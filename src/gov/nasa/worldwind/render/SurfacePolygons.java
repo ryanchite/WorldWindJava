@@ -5,16 +5,28 @@
  */
 package gov.nasa.worldwind.render;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.glu.GLUtessellator;
+import com.jogamp.opengl.glu.GLUtessellatorCallback;
+
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.cache.GpuResourceCache;
 import gov.nasa.worldwind.exception.WWRuntimeException;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.GL2;
-import javax.media.opengl.glu.*;
-import java.util.*;
-import java.util.logging.Level;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.util.CompoundVecBuffer;
+import gov.nasa.worldwind.util.GLUTessellatorSupport;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.SurfaceTileDrawContext;
+import gov.nasa.worldwind.util.VecBuffer;
+import gov.nasa.worldwind.util.WWMath;
 
 /**
  * Renders fast multiple polygons with or without holes in one pass. It relies on a {@link

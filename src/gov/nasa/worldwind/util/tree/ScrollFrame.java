@@ -6,23 +6,50 @@
 
 package gov.nasa.worldwind.util.tree;
 
-import com.jogamp.opengl.util.texture.*;
-import gov.nasa.worldwind.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.MouseWheelEvent;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.net.URL;
+import java.nio.DoubleBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.util.texture.Texture;
+import com.jogamp.opengl.util.texture.TextureCoords;
+import com.jogamp.opengl.util.texture.TextureData;
+import com.jogamp.opengl.util.texture.TextureIO;
+
+import gov.nasa.worldwind.Configuration;
+import gov.nasa.worldwind.WorldWind;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.event.SelectEvent;
 import gov.nasa.worldwind.pick.PickSupport;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import javax.media.opengl.glu.GLU;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.geom.*;
-import java.net.URL;
-import java.nio.DoubleBuffer;
-import java.util.*;
-import java.util.List;
+import gov.nasa.worldwind.render.BasicWWTexture;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.FrameFactory;
+import gov.nasa.worldwind.render.Offset;
+import gov.nasa.worldwind.render.PreRenderable;
+import gov.nasa.worldwind.render.Renderable;
+import gov.nasa.worldwind.render.Size;
+import gov.nasa.worldwind.render.TextRenderer;
+import gov.nasa.worldwind.util.HotSpot;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLRenderToTextureSupport;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.OGLTextRenderer;
+import gov.nasa.worldwind.util.OGLUtil;
+import gov.nasa.worldwind.util.WWMath;
 
 /**
  * A frame that can scroll its contents. The frame can be interactively resized by dragging the border, and be moved by

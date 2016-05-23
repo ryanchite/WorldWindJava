@@ -5,12 +5,18 @@
  */
 package gov.nasa.worldwind.util;
 
-import gov.nasa.worldwind.geom.*;
-
-import javax.media.opengl.*;
-import javax.media.opengl.glu.*;
 import java.nio.IntBuffer;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.glu.GLUtessellator;
+import com.jogamp.opengl.glu.GLUtessellatorCallback;
+import com.jogamp.opengl.glu.GLUtessellatorCallbackAdapter;
+
+import gov.nasa.worldwind.geom.Vec4;
 
 /**
  * GLUTessellatorSupport is a utility class for configuring and using a {@link javax.media.opengl.glu.GLUtessellator} to

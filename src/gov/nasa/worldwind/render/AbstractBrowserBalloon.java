@@ -5,24 +5,50 @@
  */
 package gov.nasa.worldwind.render;
 
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.avlist.*;
-import gov.nasa.worldwind.event.SelectEvent;
-import gov.nasa.worldwind.globes.GlobeStateKey;
-import gov.nasa.worldwind.layers.Layer;
-import gov.nasa.worldwind.pick.*;
-import gov.nasa.worldwind.util.*;
-import gov.nasa.worldwind.util.webview.*;
-
-import javax.media.opengl.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.geom.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.geom.Point2D;
 import java.beans.PropertyChangeEvent;
 import java.net.URL;
 import java.nio.FloatBuffer;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.Configuration;
+import gov.nasa.worldwind.Disposable;
+import gov.nasa.worldwind.WorldWind;
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.avlist.AVList;
+import gov.nasa.worldwind.avlist.AVListImpl;
+import gov.nasa.worldwind.event.SelectEvent;
+import gov.nasa.worldwind.globes.GlobeStateKey;
+import gov.nasa.worldwind.layers.Layer;
+import gov.nasa.worldwind.pick.PickSupport;
+import gov.nasa.worldwind.pick.PickedObject;
+import gov.nasa.worldwind.util.GeometryBuilder;
+import gov.nasa.worldwind.util.HotSpot;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.OGLUtil;
+import gov.nasa.worldwind.util.WWIO;
+import gov.nasa.worldwind.util.WWUtil;
+import gov.nasa.worldwind.util.webview.BasicWebViewFactory;
+import gov.nasa.worldwind.util.webview.WebResourceResolver;
+import gov.nasa.worldwind.util.webview.WebView;
+import gov.nasa.worldwind.util.webview.WebViewFactory;
 
 /**
  * A <code>{@link gov.nasa.worldwind.render.Balloon}</code> that displays HTML, JavaScript, and Flash content using the

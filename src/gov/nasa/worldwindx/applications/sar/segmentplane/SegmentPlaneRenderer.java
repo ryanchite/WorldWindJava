@@ -5,22 +5,51 @@
  */
 package gov.nasa.worldwindx.applications.sar.segmentplane;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Point;
+import java.nio.DoubleBuffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.jogamp.common.nio.Buffers;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
 import gov.nasa.worldwind.View;
-import gov.nasa.worldwind.avlist.*;
-import gov.nasa.worldwind.geom.*;
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.avlist.AVList;
+import gov.nasa.worldwind.avlist.AVListImpl;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Line;
+import gov.nasa.worldwind.geom.Matrix;
+import gov.nasa.worldwind.geom.Plane;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Triangle;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.globes.Globe;
 import gov.nasa.worldwind.layers.Layer;
-import gov.nasa.worldwind.pick.*;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.render.markers.*;
+import gov.nasa.worldwind.pick.PickSupport;
+import gov.nasa.worldwind.pick.PickedObject;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.MultiLineTextRenderer;
+import gov.nasa.worldwind.render.OrderedRenderable;
+import gov.nasa.worldwind.render.TextRenderer;
+import gov.nasa.worldwind.render.markers.BasicMarker;
+import gov.nasa.worldwind.render.markers.BasicMarkerAttributes;
+import gov.nasa.worldwind.render.markers.BasicMarkerShape;
+import gov.nasa.worldwind.render.markers.Marker;
+import gov.nasa.worldwind.render.markers.MarkerShape;
 import gov.nasa.worldwind.terrain.SectorGeometryList;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import java.awt.*;
-import java.nio.*;
-import java.util.*;
+import gov.nasa.worldwind.util.GeometryBuilder;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.OGLTextRenderer;
+import gov.nasa.worldwind.util.OGLUtil;
 
 /**
  * @author dcollins

@@ -5,26 +5,54 @@
  */
 package gov.nasa.worldwindx.examples;
 
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.avlist.*;
-import gov.nasa.worldwind.event.*;
-import gov.nasa.worldwind.formats.geojson.GeoJSONPoint;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.globes.EarthFlat;
-import gov.nasa.worldwind.layers.*;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
-import gov.nasa.worldwind.view.orbit.*;
-
-import javax.media.opengl.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.nio.DoubleBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.TitledBorder;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.Configuration;
+import gov.nasa.worldwind.WorldWind;
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.avlist.AVList;
+import gov.nasa.worldwind.event.SelectEvent;
+import gov.nasa.worldwind.event.SelectListener;
+import gov.nasa.worldwind.formats.geojson.GeoJSONPoint;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.globes.EarthFlat;
+import gov.nasa.worldwind.layers.Layer;
+import gov.nasa.worldwind.layers.LayerList;
+import gov.nasa.worldwind.layers.RenderableLayer;
+import gov.nasa.worldwind.render.AnnotationAttributes;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.FrameFactory;
+import gov.nasa.worldwind.render.GlobeAnnotation;
+import gov.nasa.worldwind.render.Renderable;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.WWUtil;
+import gov.nasa.worldwind.view.orbit.BasicOrbitView;
 
 /**
  * Using the EarthFlat and FlatOrbitView to display USGS latest earthquakes rss feed.

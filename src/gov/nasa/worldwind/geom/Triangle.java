@@ -5,11 +5,14 @@
  */
 package gov.nasa.worldwind.geom;
 
-import gov.nasa.worldwind.util.Logging;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.media.opengl.GL;
-import java.nio.*;
-import java.util.*;
+import com.jogamp.opengl.GL;
+
+import gov.nasa.worldwind.util.Logging;
 
 /**
  * Provides operations on triangles.

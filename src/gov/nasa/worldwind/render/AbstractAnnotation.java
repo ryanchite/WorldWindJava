@@ -5,14 +5,23 @@
  */
 package gov.nasa.worldwind.render;
 
-import gov.nasa.worldwind.WorldWindow;
-import gov.nasa.worldwind.avlist.*;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.pick.PickSupport;
-import gov.nasa.worldwind.util.*;
+import java.awt.Rectangle;
 
-import javax.media.opengl.*;
-import java.awt.*;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.WorldWindow;
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.avlist.AVListImpl;
+import gov.nasa.worldwind.geom.Matrix;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.pick.PickSupport;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.OGLTextRenderer;
+import gov.nasa.worldwind.util.OGLUtil;
+import gov.nasa.worldwind.util.RestorableSupport;
 
 /**
  * An {@link Annotation} represent a text label and its rendering attributes. Annotations must be attached either to a

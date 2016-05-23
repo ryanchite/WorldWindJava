@@ -5,14 +5,19 @@
  */
 package gov.nasa.worldwind.util.webview;
 
-import com.jogamp.common.nio.Buffers;
-import com.jogamp.opengl.util.texture.*;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.Logging;
-
-import javax.media.opengl.*;
-import java.awt.*;
+import java.awt.Dimension;
 import java.util.logging.Level;
+
+import com.jogamp.common.nio.Buffers;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.util.texture.Texture;
+import com.jogamp.opengl.util.texture.TextureData;
+import com.jogamp.opengl.util.texture.TextureIO;
+
+import gov.nasa.worldwind.render.BasicWWTexture;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.util.Logging;
 
 /**
  * @author dcollins

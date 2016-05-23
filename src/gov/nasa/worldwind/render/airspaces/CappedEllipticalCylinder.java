@@ -6,15 +6,28 @@
 
 package gov.nasa.worldwind.render.airspaces;
 
-import gov.nasa.worldwind.geom.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.Box;
 import gov.nasa.worldwind.geom.Cylinder;
+import gov.nasa.worldwind.geom.Extent;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.globes.Globe;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import java.util.*;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.SurfacePolygon;
+import gov.nasa.worldwind.render.SurfaceShape;
+import gov.nasa.worldwind.util.GeometryBuilder;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.RestorableSupport;
 
 /**
  * An elliptical cylinder defined by a geographic position, major and minor radii in meters, and minimum and maximum

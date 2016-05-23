@@ -6,20 +6,38 @@
 
 package gov.nasa.worldwind.util.tree;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.util.texture.TextureCoords;
+
 import gov.nasa.worldwind.WWObjectImpl;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.event.SelectEvent;
-import gov.nasa.worldwind.pick.*;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import java.awt.*;
-import java.awt.geom.*;
-import java.beans.*;
-import java.util.*;
-import java.util.List;
+import gov.nasa.worldwind.pick.PickSupport;
+import gov.nasa.worldwind.pick.PickedObject;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.MultiLineTextRenderer;
+import gov.nasa.worldwind.render.Offset;
+import gov.nasa.worldwind.render.PreRenderable;
+import gov.nasa.worldwind.render.TextRenderer;
+import gov.nasa.worldwind.render.WWTexture;
+import gov.nasa.worldwind.util.BoundedHashMap;
+import gov.nasa.worldwind.util.HotSpot;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLTextRenderer;
+import gov.nasa.worldwind.util.OGLUtil;
 
 /**
  * Layout that draws a {@link Tree} similar to a file browser tree.

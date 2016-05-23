@@ -6,13 +6,20 @@
 
 package gov.nasa.worldwindx.applications.sar;
 
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.render.airspaces.Polygon;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
 import java.util.List;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.render.BasicWWTexture;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.WWTexture;
+import gov.nasa.worldwind.render.airspaces.Polygon;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.OGLUtil;
 
 /**
  * Renders a textured plane at a given elevation.

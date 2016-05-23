@@ -5,19 +5,39 @@
  */
 package gov.nasa.worldwind.awt;
 
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.avlist.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+
+import com.jogamp.opengl.GLCapabilities;
+import com.jogamp.opengl.GLCapabilitiesChooser;
+import com.jogamp.opengl.awt.GLJPanel;
+
+import gov.nasa.worldwind.Configuration;
+import gov.nasa.worldwind.Model;
+import gov.nasa.worldwind.SceneController;
+import gov.nasa.worldwind.View;
+import gov.nasa.worldwind.WorldWind;
+import gov.nasa.worldwind.WorldWindow;
+import gov.nasa.worldwind.WorldWindowGLDrawable;
+import gov.nasa.worldwind.WorldWindowImpl;
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.avlist.AVList;
 import gov.nasa.worldwind.cache.GpuResourceCache;
-import gov.nasa.worldwind.event.*;
+import gov.nasa.worldwind.event.InputHandler;
+import gov.nasa.worldwind.event.NoOpInputHandler;
+import gov.nasa.worldwind.event.PositionListener;
+import gov.nasa.worldwind.event.RenderingExceptionListener;
+import gov.nasa.worldwind.event.RenderingListener;
+import gov.nasa.worldwind.event.SelectListener;
 import gov.nasa.worldwind.exception.WWRuntimeException;
 import gov.nasa.worldwind.geom.Position;
 import gov.nasa.worldwind.pick.PickedObjectList;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import javax.media.opengl.awt.GLJPanel;
-import java.beans.*;
-import java.util.*;
+import gov.nasa.worldwind.util.BasicGLCapabilitiesChooser;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.PerformanceStatistic;
 
 /**
  * <code>WorldWindowGLCanvas</code> is a lightweight Swing component for displaying World Wind {@link Model}s (globe and

@@ -6,20 +6,32 @@
 
 package gov.nasa.worldwind.render;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.Writer;
+import java.net.URL;
+
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.util.texture.TextureCoords;
-import gov.nasa.worldwind.*;
+
+import gov.nasa.worldwind.Exportable;
+import gov.nasa.worldwind.WWObjectImpl;
+import gov.nasa.worldwind.WorldWind;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.layers.Layer;
 import gov.nasa.worldwind.ogc.kml.KMLConstants;
 import gov.nasa.worldwind.ogc.kml.impl.KMLExportUtil;
 import gov.nasa.worldwind.pick.PickSupport;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import javax.xml.stream.*;
-import java.awt.*;
-import java.io.*;
-import java.net.URL;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.WWUtil;
 
 /**
  * Draws an image parallel to the screen at a specified screen location relative to the World Window. If no image is

@@ -5,24 +5,64 @@
  */
 package gov.nasa.worldwind.formats.shapefile;
 
-import com.jogamp.common.nio.Buffers;
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.avlist.AVKey;
-import gov.nasa.worldwind.cache.*;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.layers.Layer;
-import gov.nasa.worldwind.pick.*;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
-import gov.nasa.worldwind.util.combine.*;
-
-import javax.media.opengl.*;
-import javax.media.opengl.glu.*;
-import java.awt.*;
-import java.beans.*;
-import java.nio.*;
-import java.util.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.IdentityHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Set;
+
+import com.jogamp.common.nio.Buffers;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.glu.GLUtessellator;
+import com.jogamp.opengl.glu.GLUtessellatorCallback;
+
+import gov.nasa.worldwind.Configuration;
+import gov.nasa.worldwind.WorldWind;
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.cache.BasicMemoryCache;
+import gov.nasa.worldwind.cache.Cacheable;
+import gov.nasa.worldwind.cache.MemoryCache;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Extent;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Matrix;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.layers.Layer;
+import gov.nasa.worldwind.pick.PickSupport;
+import gov.nasa.worldwind.pick.PickedObject;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.OrderedRenderable;
+import gov.nasa.worldwind.render.PreRenderable;
+import gov.nasa.worldwind.render.ShapeAttributes;
+import gov.nasa.worldwind.render.SurfaceObjectTileBuilder;
+import gov.nasa.worldwind.render.SurfaceRenderable;
+import gov.nasa.worldwind.util.BasicQuadTree;
+import gov.nasa.worldwind.util.ClippingTessellator;
+import gov.nasa.worldwind.util.GLUTessellatorSupport;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.PolygonTessellator2;
+import gov.nasa.worldwind.util.PolylineGeneralizer;
+import gov.nasa.worldwind.util.Range;
+import gov.nasa.worldwind.util.SurfaceTileDrawContext;
+import gov.nasa.worldwind.util.Tile;
+import gov.nasa.worldwind.util.VecBuffer;
+import gov.nasa.worldwind.util.WWMath;
+import gov.nasa.worldwind.util.combine.Combinable;
+import gov.nasa.worldwind.util.combine.CombineContext;
 
 /**
  * @author dcollins

@@ -5,12 +5,16 @@
  */
 package gov.nasa.worldwind.util;
 
-import gov.nasa.worldwind.WWObjectImpl;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.util.combine.*;
+import java.util.ArrayList;
 
-import javax.media.opengl.glu.*;
-import java.util.*;
+import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.glu.GLUtessellator;
+
+import gov.nasa.worldwind.WWObjectImpl;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.util.combine.Combinable;
+import gov.nasa.worldwind.util.combine.CombineContext;
 
 /**
  * @author dcollins

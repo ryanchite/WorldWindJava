@@ -5,14 +5,19 @@
  */
 package gov.nasa.worldwind.render.airspaces;
 
+import java.nio.Buffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.util.Arrays;
+
 import com.jogamp.common.nio.Buffers;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
 import gov.nasa.worldwind.avlist.AVListImpl;
 import gov.nasa.worldwind.cache.Cacheable;
-import gov.nasa.worldwind.globes.*;
-
-import javax.media.opengl.*;
-import java.nio.*;
-import java.util.Arrays;
+import gov.nasa.worldwind.globes.Globe;
+import gov.nasa.worldwind.globes.GlobeStateKey;
 
 /**
  * @author dcollins

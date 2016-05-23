@@ -5,19 +5,33 @@
  */
 package gov.nasa.worldwind.layers;
 
-import com.jogamp.opengl.util.texture.*;
+import java.awt.Color;
+import java.awt.Point;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.util.texture.Texture;
+import com.jogamp.opengl.util.texture.TextureCoords;
+import com.jogamp.opengl.util.texture.TextureData;
+import com.jogamp.opengl.util.texture.TextureIO;
+
 import gov.nasa.worldwind.View;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.exception.WWRuntimeException;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.pick.*;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.pick.PickSupport;
+import gov.nasa.worldwind.pick.PickedObject;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.OrderedRenderable;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.OGLUtil;
 import gov.nasa.worldwind.view.orbit.OrbitView;
-
-import javax.media.opengl.*;
-import java.awt.*;
-import java.io.*;
 
 /**
  * @author tag

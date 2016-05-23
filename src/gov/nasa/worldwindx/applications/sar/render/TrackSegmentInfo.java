@@ -5,14 +5,31 @@
  */
 package gov.nasa.worldwindx.applications.sar.render;
 
-import gov.nasa.worldwind.avlist.AVKey;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
-import gov.nasa.worldwindx.applications.sar.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Point;
+import java.awt.Rectangle;
 
-import javax.media.opengl.*;
-import java.awt.*;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.MultiLineTextRenderer;
+import gov.nasa.worldwind.render.OrderedRenderable;
+import gov.nasa.worldwind.render.Renderable;
+import gov.nasa.worldwind.render.TextRenderer;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.OGLTextRenderer;
+import gov.nasa.worldwind.util.WWMath;
+import gov.nasa.worldwind.util.WWUtil;
+import gov.nasa.worldwindx.applications.sar.SAR2;
+import gov.nasa.worldwindx.applications.sar.SARPosition;
+import gov.nasa.worldwindx.applications.sar.SARTrack;
 
 /**
  * @author dcollins

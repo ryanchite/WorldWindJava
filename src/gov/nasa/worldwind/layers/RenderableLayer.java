@@ -5,16 +5,22 @@
  */
 package gov.nasa.worldwind.layers;
 
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.avlist.AVList;
-import gov.nasa.worldwind.event.*;
-import gov.nasa.worldwind.pick.PickSupport;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.Logging;
-
-import javax.media.opengl.GL2;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.concurrent.ConcurrentLinkedQueue;
+
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.Disposable;
+import gov.nasa.worldwind.Locatable;
+import gov.nasa.worldwind.avlist.AVList;
+import gov.nasa.worldwind.event.Message;
+import gov.nasa.worldwind.event.MessageListener;
+import gov.nasa.worldwind.pick.PickSupport;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.PreRenderable;
+import gov.nasa.worldwind.render.Renderable;
+import gov.nasa.worldwind.util.Logging;
 
 /**
  * The <code>RenderableLayer</code> class manages a collection of {@link gov.nasa.worldwind.render.Renderable} objects

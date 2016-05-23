@@ -5,19 +5,26 @@
  */
 package gov.nasa.worldwind.render;
 
+import java.util.Iterator;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.GLContext;
+import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.glu.GLUquadric;
+import com.jogamp.opengl.glu.gl2.GLUgl2;
+
 import gov.nasa.worldwind.Disposable;
 import gov.nasa.worldwind.avlist.AVKey;
-import gov.nasa.worldwind.geom.*;
+import gov.nasa.worldwind.geom.PolarPoint;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.layers.Layer;
-import gov.nasa.worldwind.pick.*;
+import gov.nasa.worldwind.pick.PickSupport;
+import gov.nasa.worldwind.pick.PickedObject;
 import gov.nasa.worldwind.terrain.SectorGeometryList;
 import gov.nasa.worldwind.tracks.TrackPoint;
 import gov.nasa.worldwind.util.Logging;
-
-import javax.media.opengl.*;
-import javax.media.opengl.glu.*;
-import javax.media.opengl.glu.gl2.GLUgl2;
-import java.util.Iterator;
 
 /**
  * @author tag

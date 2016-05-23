@@ -5,16 +5,27 @@
  */
 package gov.nasa.worldwind.render.airspaces.editor;
 
+import java.awt.Color;
+import java.awt.Point;
+import java.util.Comparator;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
 import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.layers.Layer;
-import gov.nasa.worldwind.pick.*;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.render.markers.*;
+import gov.nasa.worldwind.pick.PickSupport;
+import gov.nasa.worldwind.pick.PickedObject;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.Material;
+import gov.nasa.worldwind.render.markers.BasicMarker;
+import gov.nasa.worldwind.render.markers.BasicMarkerAttributes;
+import gov.nasa.worldwind.render.markers.BasicMarkerShape;
+import gov.nasa.worldwind.render.markers.Marker;
+import gov.nasa.worldwind.render.markers.MarkerAttributes;
 import gov.nasa.worldwind.util.Logging;
-
-import javax.media.opengl.*;
-import java.awt.*;
-import java.util.*;
 
 // TODO: this renderer largely redundant with MarkerRenderer, and the additional fucntionality here should be
 // integrated into MarkerRenderer. There are two key pieces of additional functionality:

@@ -5,13 +5,17 @@
  */
 package gov.nasa.worldwind.render;
 
-import com.jogamp.opengl.util.texture.TextureCoords;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.util.SurfaceTileDrawContext;
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.media.opengl.*;
-import java.awt.geom.*;
-import java.util.*;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.util.texture.TextureCoords;
+
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.util.SurfaceTileDrawContext;
 
 /**
  * Renders an icon image over the terrain surface in many locations.

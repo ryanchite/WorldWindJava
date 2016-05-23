@@ -5,16 +5,30 @@
  */
 package gov.nasa.worldwind.formats.vpf;
 
-import gov.nasa.worldwind.cache.GpuResourceCache;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.globes.Globe;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import javax.media.opengl.glu.*;
 import java.nio.IntBuffer;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.glu.GLUtessellator;
+
+import gov.nasa.worldwind.cache.GpuResourceCache;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Matrix;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.globes.Globe;
+import gov.nasa.worldwind.render.BasicWWTexture;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.ShapeAttributes;
+import gov.nasa.worldwind.render.SurfacePolygon;
+import gov.nasa.worldwind.render.WWTexture;
+import gov.nasa.worldwind.util.CompoundVecBuffer;
+import gov.nasa.worldwind.util.SurfaceTileDrawContext;
+import gov.nasa.worldwind.util.VecBuffer;
+import gov.nasa.worldwind.util.VecBufferSequence;
 
 /**
  * @author dcollins

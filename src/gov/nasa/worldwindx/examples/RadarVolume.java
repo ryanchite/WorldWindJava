@@ -5,19 +5,31 @@
  */
 package gov.nasa.worldwindx.examples;
 
-import com.jogamp.common.nio.Buffers;
-import gov.nasa.worldwind.Exportable;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.globes.Globe;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.terrain.Terrain;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import javax.xml.stream.*;
 import java.io.IOException;
-import java.nio.*;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 import java.util.List;
+
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+
+import com.jogamp.common.nio.Buffers;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.Exportable;
+import gov.nasa.worldwind.geom.Extent;
+import gov.nasa.worldwind.geom.Intersection;
+import gov.nasa.worldwind.geom.Line;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.globes.Globe;
+import gov.nasa.worldwind.render.AbstractShape;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.terrain.Terrain;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.WWUtil;
 
 /**
  * Displays a volume defined by a near and far grid of positions. This shape is meant to represent a radar volume, with

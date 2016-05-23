@@ -6,17 +6,26 @@
 
 package gov.nasa.worldwind.render;
 
-import com.jogamp.opengl.util.texture.*;
-import com.jogamp.opengl.util.texture.awt.AWTTextureIO;
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.avlist.*;
-import gov.nasa.worldwind.cache.FileStore;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import java.awt.image.*;
-import java.beans.*;
+import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.net.URL;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.util.texture.Texture;
+import com.jogamp.opengl.util.texture.TextureCoords;
+import com.jogamp.opengl.util.texture.TextureData;
+import com.jogamp.opengl.util.texture.TextureIO;
+import com.jogamp.opengl.util.texture.awt.AWTTextureIO;
+
+import gov.nasa.worldwind.Configuration;
+import gov.nasa.worldwind.WorldWind;
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.avlist.AVListImpl;
+import gov.nasa.worldwind.cache.FileStore;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLUtil;
 
 /**
  * Represents a texture derived from a lazily loaded image source such as an image file or a {@link

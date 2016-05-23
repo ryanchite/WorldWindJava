@@ -5,13 +5,22 @@
  */
 package gov.nasa.worldwind.render;
 
-import gov.nasa.worldwind.cache.GpuResourceCache;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.globes.Globe;
-import gov.nasa.worldwind.util.*;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
-import javax.media.opengl.*;
-import java.util.*;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.cache.GpuResourceCache;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.globes.Globe;
+import gov.nasa.worldwind.util.CompoundVecBuffer;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.SurfaceTileDrawContext;
+import gov.nasa.worldwind.util.VecBuffer;
 
 /**
  * This class renders fast multiple surface polylines in one pass. It relies on a {@link CompoundVecBuffer}.

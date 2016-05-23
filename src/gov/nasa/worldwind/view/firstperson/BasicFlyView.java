@@ -5,14 +5,22 @@
  */
 package gov.nasa.worldwind.view.firstperson;
 
+import com.jogamp.opengl.GL;
+
 import gov.nasa.worldwind.Configuration;
 import gov.nasa.worldwind.avlist.AVKey;
-import gov.nasa.worldwind.geom.*;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Frustum;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Matrix;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.render.DrawContext;
 import gov.nasa.worldwind.util.Logging;
-import gov.nasa.worldwind.view.*;
-
-import javax.media.opengl.GL;
+import gov.nasa.worldwind.view.BasicView;
+import gov.nasa.worldwind.view.BasicViewPropertyLimits;
+import gov.nasa.worldwind.view.ViewPropertyLimits;
+import gov.nasa.worldwind.view.ViewUtil;
 
 /**
  * This is a basic view that implements a yaw-pitch-roll model that can be applied to first-person style view

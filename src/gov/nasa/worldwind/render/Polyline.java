@@ -5,20 +5,39 @@
  */
 package gov.nasa.worldwind.render;
 
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.avlist.*;
-import gov.nasa.worldwind.geom.*;
+import java.awt.Color;
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.Movable;
+import gov.nasa.worldwind.Restorable;
+import gov.nasa.worldwind.WorldWind;
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.avlist.AVListImpl;
+import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.Cylinder;
-import gov.nasa.worldwind.globes.*;
+import gov.nasa.worldwind.geom.Extent;
+import gov.nasa.worldwind.geom.ExtentHolder;
+import gov.nasa.worldwind.geom.Frustum;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Line;
+import gov.nasa.worldwind.geom.MeasurableLength;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.globes.Globe;
 import gov.nasa.worldwind.layers.Layer;
 import gov.nasa.worldwind.pick.PickSupport;
-import gov.nasa.worldwind.util.*;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.RestorableSupport;
 import gov.nasa.worldwind.util.measure.LengthMeasurer;
-
-import javax.media.opengl.*;
-import java.awt.*;
-import java.util.*;
-import java.util.List;
 
 /**
  * @author tag

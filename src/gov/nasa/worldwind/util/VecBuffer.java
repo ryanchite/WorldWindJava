@@ -5,12 +5,16 @@
  */
 package gov.nasa.worldwind.util;
 
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.render.DrawContext;
-
-import javax.media.opengl.GL2;
 import java.nio.Buffer;
-import java.util.*;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.render.DrawContext;
 
 /**
  * VecBuffer provides an logical interface on {@link BufferWrapper} to interpret its contents as a series of vector

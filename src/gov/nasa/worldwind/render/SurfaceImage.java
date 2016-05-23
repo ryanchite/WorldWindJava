@@ -5,22 +5,36 @@
  */
 package gov.nasa.worldwind.render;
 
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.geom.*;
+import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.Writer;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.Disposable;
+import gov.nasa.worldwind.Exportable;
+import gov.nasa.worldwind.Movable;
+import gov.nasa.worldwind.WWObjectImpl;
+import gov.nasa.worldwind.geom.Extent;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
 import gov.nasa.worldwind.layers.Layer;
 import gov.nasa.worldwind.ogc.kml.KMLConstants;
 import gov.nasa.worldwind.ogc.kml.gx.GXConstants;
 import gov.nasa.worldwind.pick.PickSupport;
 import gov.nasa.worldwind.util.Logging;
-
-import javax.media.opengl.*;
-import javax.xml.stream.*;
-import java.awt.*;
-import java.awt.image.*;
-import java.io.*;
-import java.net.URL;
-import java.util.*;
-import java.util.List;
 
 /**
  * Renders a single image contained in a local file, a remote file, or a <code>BufferedImage</code>.

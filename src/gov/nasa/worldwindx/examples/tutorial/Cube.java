@@ -6,17 +6,26 @@
 
 package gov.nasa.worldwindx.examples.tutorial;
 
+import java.awt.Color;
+import java.awt.Point;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
 import gov.nasa.worldwind.Configuration;
 import gov.nasa.worldwind.avlist.AVKey;
-import gov.nasa.worldwind.geom.*;
+import gov.nasa.worldwind.geom.Extent;
+import gov.nasa.worldwind.geom.Matrix;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sphere;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.layers.RenderableLayer;
 import gov.nasa.worldwind.pick.PickSupport;
-import gov.nasa.worldwind.render.*;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.OrderedRenderable;
+import gov.nasa.worldwind.render.Renderable;
 import gov.nasa.worldwind.util.OGLUtil;
 import gov.nasa.worldwindx.examples.ApplicationTemplate;
-
-import javax.media.opengl.*;
-import java.awt.*;
 
 /**
  * Example of a custom {@link Renderable} that draws a cube at a geographic position. This class shows the simplest

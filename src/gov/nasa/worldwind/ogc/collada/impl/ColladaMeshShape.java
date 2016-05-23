@@ -6,22 +6,61 @@
 
 package gov.nasa.worldwind.ogc.collada.impl;
 
+import java.awt.Color;
+import java.awt.Point;
+import java.nio.FloatBuffer;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.jogamp.common.nio.Buffers;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
 import gov.nasa.worldwind.cache.GpuResourceCache;
 import gov.nasa.worldwind.geom.Box;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.globes.*;
-import gov.nasa.worldwind.ogc.collada.*;
+import gov.nasa.worldwind.geom.Extent;
+import gov.nasa.worldwind.geom.Intersection;
+import gov.nasa.worldwind.geom.Line;
+import gov.nasa.worldwind.geom.Matrix;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.globes.Globe;
+import gov.nasa.worldwind.globes.GlobeStateKey;
+import gov.nasa.worldwind.ogc.collada.ColladaAbstractGeometry;
+import gov.nasa.worldwind.ogc.collada.ColladaBindMaterial;
+import gov.nasa.worldwind.ogc.collada.ColladaBindVertexInput;
+import gov.nasa.worldwind.ogc.collada.ColladaEffect;
+import gov.nasa.worldwind.ogc.collada.ColladaExtra;
+import gov.nasa.worldwind.ogc.collada.ColladaImage;
+import gov.nasa.worldwind.ogc.collada.ColladaInstanceEffect;
+import gov.nasa.worldwind.ogc.collada.ColladaInstanceMaterial;
+import gov.nasa.worldwind.ogc.collada.ColladaLines;
+import gov.nasa.worldwind.ogc.collada.ColladaMaterial;
+import gov.nasa.worldwind.ogc.collada.ColladaNewParam;
+import gov.nasa.worldwind.ogc.collada.ColladaProfileCommon;
+import gov.nasa.worldwind.ogc.collada.ColladaSampler2D;
+import gov.nasa.worldwind.ogc.collada.ColladaSource;
+import gov.nasa.worldwind.ogc.collada.ColladaSurface;
+import gov.nasa.worldwind.ogc.collada.ColladaTechnique;
+import gov.nasa.worldwind.ogc.collada.ColladaTechniqueCommon;
+import gov.nasa.worldwind.ogc.collada.ColladaTexture;
+import gov.nasa.worldwind.ogc.collada.ColladaTriangles;
 import gov.nasa.worldwind.pick.PickSupport;
-import gov.nasa.worldwind.render.*;
+import gov.nasa.worldwind.render.AbstractGeneralShape;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.LazilyLoadedTexture;
+import gov.nasa.worldwind.render.Material;
+import gov.nasa.worldwind.render.OrderedRenderable;
+import gov.nasa.worldwind.render.ShapeAttributes;
+import gov.nasa.worldwind.render.WWTexture;
 import gov.nasa.worldwind.terrain.Terrain;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import java.awt.*;
-import java.nio.FloatBuffer;
-import java.util.*;
-import java.util.List;
+import gov.nasa.worldwind.util.BufferWrapper;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.WWBufferUtil;
+import gov.nasa.worldwind.util.WWUtil;
 
 /**
  * Shape to render a COLLADA line or triangle mesh. An instance of this shape can render any number of {@link

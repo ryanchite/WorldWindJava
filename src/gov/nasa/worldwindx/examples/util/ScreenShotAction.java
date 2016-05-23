@@ -6,18 +6,24 @@
 
 package gov.nasa.worldwindx.examples.util;
 
-import com.jogamp.opengl.util.awt.*;
-import gov.nasa.worldwind.WorldWindow;
-import gov.nasa.worldwind.event.*;
-import gov.nasa.worldwind.util.WWIO;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.media.opengl.*;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.*;
-import java.io.*;
+import javax.swing.AbstractAction;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
+import com.jogamp.opengl.GLAutoDrawable;
+import com.jogamp.opengl.util.awt.AWTGLReadBufferUtil;
+
+import gov.nasa.worldwind.WorldWindow;
+import gov.nasa.worldwind.event.RenderingEvent;
+import gov.nasa.worldwind.event.RenderingListener;
+import gov.nasa.worldwind.util.WWIO;
 
 /**
  * @author tag

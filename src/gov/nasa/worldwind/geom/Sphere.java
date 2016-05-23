@@ -5,12 +5,16 @@
  */
 package gov.nasa.worldwind.geom;
 
-import gov.nasa.worldwind.View;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.glu.GLUquadric;
 
-import javax.media.opengl.GL2;
-import javax.media.opengl.glu.*;
+import gov.nasa.worldwind.View;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.Renderable;
+import gov.nasa.worldwind.util.BufferWrapper;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.WWMath;
 
 /**
  * Represents a sphere in three dimensional space. <p/> Instances of <code>Sphere</code> are immutable. </p>

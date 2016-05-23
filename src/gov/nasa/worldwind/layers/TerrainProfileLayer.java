@@ -5,21 +5,41 @@
  */
 package gov.nasa.worldwind.layers;
 
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.avlist.AVKey;
-import gov.nasa.worldwind.event.*;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.pick.PickSupport;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
-import gov.nasa.worldwind.view.orbit.OrbitView;
-
-import javax.media.opengl.*;
-import java.awt.*;
-import java.awt.geom.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.beans.PropertyChangeEvent;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.View;
+import gov.nasa.worldwind.WorldWindow;
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.event.PositionEvent;
+import gov.nasa.worldwind.event.PositionListener;
+import gov.nasa.worldwind.event.SelectEvent;
+import gov.nasa.worldwind.event.SelectListener;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Intersection;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Line;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.pick.PickSupport;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.OrderedRenderable;
+import gov.nasa.worldwind.render.Polyline;
+import gov.nasa.worldwind.render.TextRenderer;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLTextRenderer;
+import gov.nasa.worldwind.view.orbit.OrbitView;
 
 /**
  * Displays a terrain profile graph in a screen corner. <p/> <p> Usage: do setEventSource(wwd) to have the graph

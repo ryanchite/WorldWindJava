@@ -6,10 +6,15 @@
 
 package gov.nasa.worldwind.render.airspaces;
 
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
 
-import javax.media.opengl.*;
+import gov.nasa.worldwind.render.BasicShapeAttributes;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.Material;
+import gov.nasa.worldwind.render.ShapeAttributes;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.RestorableSupport;
 
 /**
  * Basic implementation of the {@link gov.nasa.worldwind.render.airspaces.AirspaceAttributes} interface.

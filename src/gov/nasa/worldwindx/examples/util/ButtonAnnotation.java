@@ -5,12 +5,18 @@
  */
 package gov.nasa.worldwindx.examples.util;
 
-import gov.nasa.worldwind.event.*;
-import gov.nasa.worldwind.geom.Position;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
 
-import javax.media.opengl.*;
+import gov.nasa.worldwind.event.SelectEvent;
+import gov.nasa.worldwind.event.SelectListener;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.render.Annotation;
+import gov.nasa.worldwind.render.BasicWWTexture;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.WWTexture;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
 
 /**
  * @author dcollins

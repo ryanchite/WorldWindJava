@@ -6,13 +6,17 @@
 
 package gov.nasa.worldwind.render;
 
-import com.jogamp.common.nio.Buffers;
-import com.jogamp.opengl.util.texture.*;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.util.Logging;
-
-import javax.media.opengl.GL;
 import java.util.List;
+
+import com.jogamp.common.nio.Buffers;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.util.texture.Texture;
+import com.jogamp.opengl.util.texture.TextureData;
+import com.jogamp.opengl.util.texture.TextureIO;
+
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.util.Logging;
 
 /**
  * @author tag

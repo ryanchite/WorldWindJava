@@ -6,10 +6,11 @@
 
 package gov.nasa.worldwind.render.markers;
 
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.Logging;
+import com.jogamp.opengl.GL2;
 
-import javax.media.opengl.*;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.Material;
+import gov.nasa.worldwind.util.Logging;
 
 /**
  * @author tag

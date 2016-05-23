@@ -6,17 +6,23 @@
 
 package gov.nasa.worldwind.render.markers;
 
+import java.util.ArrayList;
+
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.glu.GLUquadric;
+import com.jogamp.opengl.glu.gl2.GLUgl2;
+
 import gov.nasa.worldwind.Disposable;
 import gov.nasa.worldwind.cache.GpuResourceCache;
-import gov.nasa.worldwind.geom.*;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Matrix;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.globes.Globe;
 import gov.nasa.worldwind.render.DrawContext;
 import gov.nasa.worldwind.util.Logging;
-
-import javax.media.opengl.GL2;
-import javax.media.opengl.glu.*;
-import javax.media.opengl.glu.gl2.GLUgl2;
-import java.util.ArrayList;
 
 /**
  * This is the base class for marker symbols.

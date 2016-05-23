@@ -5,15 +5,25 @@
  */
 package gov.nasa.worldwind.layers;
 
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.cache.GpuResourceCache;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.render.DrawContext;
-import gov.nasa.worldwind.util.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
 
-import javax.media.opengl.*;
-import java.io.*;
-import java.nio.*;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.Configuration;
+import gov.nasa.worldwind.View;
+import gov.nasa.worldwind.cache.GpuResourceCache;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Matrix;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.WWIO;
+import gov.nasa.worldwind.util.WWUtil;
 
 /**
  * Renders a star background based on a subset of ESA Hipparcos catalog.

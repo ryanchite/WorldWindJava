@@ -5,24 +5,59 @@
  */
 package gov.nasa.worldwind.layers;
 
-import gov.nasa.worldwind.WorldWind;
-import gov.nasa.worldwind.avlist.*;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.geom.Box;
-import gov.nasa.worldwind.globes.Earth;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.retrieve.*;
-import gov.nasa.worldwind.util.*;
-import org.w3c.dom.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InterruptedIOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.concurrent.PriorityBlockingQueue;
 
 import javax.imageio.ImageIO;
-import javax.media.opengl.*;
 import javax.xml.xpath.XPath;
-import java.awt.image.*;
-import java.io.*;
-import java.net.*;
-import java.util.*;
-import java.util.concurrent.PriorityBlockingQueue;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.WorldWind;
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.avlist.AVList;
+import gov.nasa.worldwind.avlist.AVListImpl;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Box;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.globes.Earth;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.Renderable;
+import gov.nasa.worldwind.render.TextRenderer;
+import gov.nasa.worldwind.retrieve.AbstractRetrievalPostProcessor;
+import gov.nasa.worldwind.retrieve.HTTPRetriever;
+import gov.nasa.worldwind.retrieve.Retriever;
+import gov.nasa.worldwind.retrieve.RetrieverFactory;
+import gov.nasa.worldwind.retrieve.URLRetriever;
+import gov.nasa.worldwind.util.DataConfigurationUtils;
+import gov.nasa.worldwind.util.ImageUtil;
+import gov.nasa.worldwind.util.Level;
+import gov.nasa.worldwind.util.LevelSet;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLTextRenderer;
+import gov.nasa.worldwind.util.PerformanceStatistic;
+import gov.nasa.worldwind.util.Tile;
+import gov.nasa.worldwind.util.TileKey;
+import gov.nasa.worldwind.util.WWIO;
+import gov.nasa.worldwind.util.WWMath;
+import gov.nasa.worldwind.util.WWXML;
 
 /**
  * @author tag

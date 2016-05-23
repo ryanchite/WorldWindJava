@@ -6,18 +6,25 @@
 
 package gov.nasa.worldwind.render.markers;
 
-import gov.nasa.worldwind.avlist.AVKey;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.layers.Layer;
-import gov.nasa.worldwind.pick.*;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.Logging;
-
-import javax.media.opengl.*;
-import java.awt.*;
-import java.util.*;
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sphere;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.layers.Layer;
+import gov.nasa.worldwind.pick.PickSupport;
+import gov.nasa.worldwind.pick.PickedObject;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.OrderedRenderable;
+import gov.nasa.worldwind.util.Logging;
 
 /**
  * @author tag

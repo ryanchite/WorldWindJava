@@ -6,14 +6,21 @@
 
 package gov.nasa.worldwind.layers;
 
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.pick.PickSupport;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
 import java.util.Collection;
+
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.Disposable;
+import gov.nasa.worldwind.Locatable;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.pick.PickSupport;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.GeographicExtent;
+import gov.nasa.worldwind.render.PreRenderable;
+import gov.nasa.worldwind.render.Renderable;
+import gov.nasa.worldwind.util.BasicQuadTree;
+import gov.nasa.worldwind.util.Logging;
 
 /**
  * Holds a collection of Renderables and manages local caching of them. Provides searching for Renderables by sector,

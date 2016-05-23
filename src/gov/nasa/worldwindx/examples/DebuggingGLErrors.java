@@ -5,10 +5,12 @@
  */
 package gov.nasa.worldwindx.examples;
 
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.avlist.AVKey;
+import com.jogamp.opengl.DebugGL2;
+import com.jogamp.opengl.GLAutoDrawable;
 
-import javax.media.opengl.*;
+import gov.nasa.worldwind.Configuration;
+import gov.nasa.worldwind.WorldWindowGLAutoDrawable;
+import gov.nasa.worldwind.avlist.AVKey;
 
 /**
  * Illustrates how to capture OpenGL errors into the log during development. By defining a custom <code>{@link

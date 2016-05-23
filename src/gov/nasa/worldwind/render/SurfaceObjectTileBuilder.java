@@ -5,19 +5,44 @@
  */
 package gov.nasa.worldwind.render;
 
-import com.jogamp.opengl.util.texture.*;
-import gov.nasa.worldwind.avlist.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.util.texture.Texture;
+import com.jogamp.opengl.util.texture.TextureData;
+import com.jogamp.opengl.util.texture.TextureIO;
+
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.avlist.AVList;
+import gov.nasa.worldwind.avlist.AVListImpl;
 import gov.nasa.worldwind.cache.Cacheable;
-import gov.nasa.worldwind.geom.*;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Extent;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Sector;
 import gov.nasa.worldwind.globes.Globe2D;
 import gov.nasa.worldwind.layers.TextureTile;
 import gov.nasa.worldwind.pick.PickedObject;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.GL;
-import java.awt.*;
-import java.util.*;
-import java.util.List;
+import gov.nasa.worldwind.util.Level;
+import gov.nasa.worldwind.util.LevelSet;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLRenderToTextureSupport;
+import gov.nasa.worldwind.util.OGLUtil;
+import gov.nasa.worldwind.util.SurfaceTileDrawContext;
+import gov.nasa.worldwind.util.Tile;
+import gov.nasa.worldwind.util.TileKey;
+import gov.nasa.worldwind.util.WWMath;
 
 /**
  * Builds a list of {@link gov.nasa.worldwind.render.SurfaceTile} instances who's content is defined by a specified set

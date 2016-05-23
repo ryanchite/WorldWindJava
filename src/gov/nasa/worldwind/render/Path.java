@@ -6,29 +6,54 @@
 
 package gov.nasa.worldwind.render;
 
+import static gov.nasa.worldwind.ogc.kml.impl.KMLExportUtil.kmlBoolean;
+
+import java.awt.Color;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+
 import com.jogamp.common.nio.Buffers;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
 import gov.nasa.worldwind.WorldWind;
 import gov.nasa.worldwind.avlist.AVKey;
-import gov.nasa.worldwind.cache.*;
-import gov.nasa.worldwind.geom.*;
+import gov.nasa.worldwind.cache.GpuResourceCache;
+import gov.nasa.worldwind.cache.ShapeDataCache;
+import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.Box;
 import gov.nasa.worldwind.geom.Cylinder;
+import gov.nasa.worldwind.geom.Extent;
+import gov.nasa.worldwind.geom.Frustum;
+import gov.nasa.worldwind.geom.Intersection;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Line;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.globes.Globe;
 import gov.nasa.worldwind.layers.Layer;
 import gov.nasa.worldwind.ogc.kml.impl.KMLExportUtil;
-import gov.nasa.worldwind.pick.*;
+import gov.nasa.worldwind.pick.PickSupport;
+import gov.nasa.worldwind.pick.PickedObject;
 import gov.nasa.worldwind.terrain.Terrain;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import javax.xml.stream.*;
-import java.awt.*;
-import java.io.IOException;
-import java.nio.*;
-import java.util.*;
-import java.util.List;
-
-import static gov.nasa.worldwind.ogc.kml.impl.KMLExportUtil.kmlBoolean;
+import gov.nasa.worldwind.util.BufferWrapper;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.WWMath;
+import gov.nasa.worldwind.util.WWUtil;
 
 // TODO: Measurement (getLength), Texture, lighting
 

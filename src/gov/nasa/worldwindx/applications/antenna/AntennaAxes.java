@@ -6,19 +6,38 @@
 
 package gov.nasa.worldwindx.applications.antenna;
 
-import com.jogamp.common.nio.Buffers;
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.globes.Globe;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.terrain.Terrain;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import javax.xml.stream.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.io.IOException;
-import java.nio.*;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+
+import com.jogamp.common.nio.Buffers;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.Exportable;
+import gov.nasa.worldwind.WorldWind;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Extent;
+import gov.nasa.worldwind.geom.Intersection;
+import gov.nasa.worldwind.geom.Line;
+import gov.nasa.worldwind.geom.Matrix;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Sphere;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.globes.Globe;
+import gov.nasa.worldwind.render.AbstractShape;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.TextRenderer;
+import gov.nasa.worldwind.terrain.Terrain;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.OGLTextRenderer;
 
 /**
  * Provides axes for {@link AntennaModel}. The axes are positioned by a {@link Position}, an azimuth and ane elevation

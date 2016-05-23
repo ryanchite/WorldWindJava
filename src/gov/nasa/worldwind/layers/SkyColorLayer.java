@@ -5,12 +5,15 @@
  */
 package gov.nasa.worldwind.layers;
 
+import java.awt.Color;
+import java.awt.Rectangle;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
 import gov.nasa.worldwind.geom.Position;
 import gov.nasa.worldwind.render.DrawContext;
 import gov.nasa.worldwind.util.Logging;
-
-import javax.media.opengl.*;
-import java.awt.*;
 
 /**
  * Paints the sky color background depending on altitude.

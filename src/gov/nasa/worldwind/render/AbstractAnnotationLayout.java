@@ -5,11 +5,12 @@
  */
 package gov.nasa.worldwind.render;
 
+import com.jogamp.opengl.GL2;
+
 import gov.nasa.worldwind.geom.Position;
 import gov.nasa.worldwind.pick.PickSupport;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.GL2;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
 
 /**
  * @author dcollins

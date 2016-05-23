@@ -6,24 +6,51 @@
 
 package gov.nasa.worldwind.render;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+
 import com.jogamp.common.nio.Buffers;
-import gov.nasa.worldwind.*;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.glu.GLU;
+
+import gov.nasa.worldwind.Configuration;
+import gov.nasa.worldwind.WorldWind;
+import gov.nasa.worldwind.WorldWindow;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.cache.GpuResourceCache;
 import gov.nasa.worldwind.exception.WWRuntimeException;
-import gov.nasa.worldwind.geom.*;
+import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.Box;
+import gov.nasa.worldwind.geom.Extent;
+import gov.nasa.worldwind.geom.Intersection;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Line;
+import gov.nasa.worldwind.geom.Matrix;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Triangle;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.globes.Globe;
 import gov.nasa.worldwind.ogc.kml.impl.KMLExportUtil;
 import gov.nasa.worldwind.terrain.Terrain;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import javax.media.opengl.glu.GLU;
-import javax.xml.stream.*;
-import java.io.*;
-import java.nio.*;
-import java.util.*;
+import gov.nasa.worldwind.util.GLUTessellatorSupport;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.WWBufferUtil;
+import gov.nasa.worldwind.util.WWMath;
 
 /**
  * /** A 3D polygon. The polygon may be complex with multiple internal but not intersecting contours.

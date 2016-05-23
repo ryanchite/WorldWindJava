@@ -5,16 +5,28 @@
  */
 package gov.nasa.worldwind.render.airspaces;
 
-import gov.nasa.worldwind.cache.Cacheable;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.globes.*;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.terrain.Terrain;
-import gov.nasa.worldwind.util.*;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.media.opengl.*;
-import java.nio.*;
-import java.util.*;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.cache.Cacheable;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Extent;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.globes.Globe;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.SurfaceShape;
+import gov.nasa.worldwind.terrain.Terrain;
+import gov.nasa.worldwind.util.GeometryBuilder;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.RestorableSupport;
 
 /**
  * @author lado

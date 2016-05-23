@@ -5,12 +5,15 @@
  */
 package gov.nasa.worldwind.util.combine;
 
+import java.util.Arrays;
+
+import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.glu.GLUtessellator;
+
 import gov.nasa.worldwind.geom.Sector;
 import gov.nasa.worldwind.globes.Globe;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.glu.*;
-import java.util.*;
+import gov.nasa.worldwind.util.ContourList;
+import gov.nasa.worldwind.util.Logging;
 
 /**
  * @author dcollins

@@ -5,15 +5,24 @@
  */
 package gov.nasa.worldwind.view.orbit;
 
-import gov.nasa.worldwind.*;
+import com.jogamp.opengl.GL;
+
+import gov.nasa.worldwind.Configuration;
+import gov.nasa.worldwind.View;
+import gov.nasa.worldwind.WorldWind;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.awt.ViewInputHandler;
-import gov.nasa.worldwind.geom.*;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Frustum;
+import gov.nasa.worldwind.geom.Intersection;
+import gov.nasa.worldwind.geom.Line;
+import gov.nasa.worldwind.geom.Matrix;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.render.DrawContext;
-import gov.nasa.worldwind.util.*;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.RestorableSupport;
 import gov.nasa.worldwind.view.BasicView;
-
-import javax.media.opengl.GL;
 
 /**
  * @author dcollins

@@ -6,16 +6,29 @@
 
 package gov.nasa.worldwind.util;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.geom.Vec4;
-import gov.nasa.worldwind.pick.*;
-import gov.nasa.worldwind.render.*;
-
-import javax.media.opengl.*;
-import java.awt.*;
-import java.awt.geom.*;
-import java.util.*;
-import java.util.List;
+import gov.nasa.worldwind.pick.PickSupport;
+import gov.nasa.worldwind.pick.PickedObject;
+import gov.nasa.worldwind.render.Declutterable;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.OrderedRenderable;
+import gov.nasa.worldwind.render.PointPlacemark;
+import gov.nasa.worldwind.render.PointPlacemarkAttributes;
+import gov.nasa.worldwind.render.TextRenderer;
 
 /**
  * Provides a clutter filter that rearranges {@link PointPlacemark} labels to avoid overlap. When placemarks overlap,

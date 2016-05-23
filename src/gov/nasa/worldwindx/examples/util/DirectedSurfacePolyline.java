@@ -5,15 +5,22 @@
  */
 package gov.nasa.worldwindx.examples.util;
 
-import com.jogamp.common.nio.Buffers;
-import gov.nasa.worldwind.avlist.AVKey;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
 import java.nio.FloatBuffer;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+
+import com.jogamp.common.nio.Buffers;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.ShapeAttributes;
+import gov.nasa.worldwind.render.SurfacePolyline;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.SurfaceTileDrawContext;
 
 /**
  * A {@link SurfacePolyline} that draws arrowheads between the polyline positions to indicate direction. All arrowheads

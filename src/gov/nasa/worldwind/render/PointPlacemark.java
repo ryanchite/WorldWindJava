@@ -6,25 +6,49 @@
 
 package gov.nasa.worldwind.render;
 
-import gov.nasa.worldwind.*;
+import static gov.nasa.worldwind.ogc.kml.impl.KMLExportUtil.kmlBoolean;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.Writer;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.Exportable;
+import gov.nasa.worldwind.Locatable;
+import gov.nasa.worldwind.Movable;
+import gov.nasa.worldwind.View;
+import gov.nasa.worldwind.WWObjectImpl;
+import gov.nasa.worldwind.WorldWind;
 import gov.nasa.worldwind.avlist.AVKey;
-import gov.nasa.worldwind.geom.*;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.globes.Globe2D;
 import gov.nasa.worldwind.layers.Layer;
 import gov.nasa.worldwind.ogc.kml.KMLConstants;
 import gov.nasa.worldwind.ogc.kml.impl.KMLExportUtil;
-import gov.nasa.worldwind.pick.*;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import javax.xml.stream.*;
-import java.awt.*;
-import java.awt.geom.*;
-import java.io.*;
-import java.net.URL;
-import java.util.*;
-
-import static gov.nasa.worldwind.ogc.kml.impl.KMLExportUtil.kmlBoolean;
+import gov.nasa.worldwind.pick.PickSupport;
+import gov.nasa.worldwind.pick.PickedObject;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.OGLTextRenderer;
+import gov.nasa.worldwind.util.OGLUtil;
+import gov.nasa.worldwind.util.WWUtil;
 
 /**
  * Represents a point placemark consisting of an image, an optional line linking the image to a corresponding point on

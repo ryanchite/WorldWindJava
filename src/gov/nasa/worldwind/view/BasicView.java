@@ -5,16 +5,26 @@
  */
 package gov.nasa.worldwind.view;
 
-import gov.nasa.worldwind.*;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.Configuration;
+import gov.nasa.worldwind.View;
+import gov.nasa.worldwind.WWObjectImpl;
 import gov.nasa.worldwind.animation.Animator;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.awt.ViewInputHandler;
-import gov.nasa.worldwind.geom.*;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Frustum;
+import gov.nasa.worldwind.geom.Intersection;
+import gov.nasa.worldwind.geom.Line;
+import gov.nasa.worldwind.geom.Matrix;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.globes.Globe;
 import gov.nasa.worldwind.render.DrawContext;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.GL2;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.RestorableSupport;
 
 /**
  * A base class from which {@link View} implementations can be derived. Currently {@link

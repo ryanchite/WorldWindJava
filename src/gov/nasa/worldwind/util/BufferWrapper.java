@@ -6,10 +6,19 @@
 
 package gov.nasa.worldwind.util;
 
-import gov.nasa.worldwind.avlist.*;
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.DoubleBuffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.nio.ShortBuffer;
 
-import javax.media.opengl.*;
-import java.nio.*;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.avlist.AVList;
 
 /**
  * BufferWrapper provides an interface for reading and writing primitive data to and from data buffers, without having

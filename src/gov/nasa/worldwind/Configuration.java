@@ -6,16 +6,31 @@
 
 package gov.nasa.worldwind;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Properties;
+import java.util.logging.Level;
+
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import com.jogamp.opengl.GLCapabilities;
+import com.jogamp.opengl.GLProfile;
+
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.geom.Angle;
-import gov.nasa.worldwind.util.*;
-import org.w3c.dom.*;
-
-import javax.media.opengl.*;
-import javax.xml.xpath.*;
-import java.io.*;
-import java.util.*;
-import java.util.logging.Level;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.WWUtil;
+import gov.nasa.worldwind.util.WWXML;
 
 /**
  * This class manages the initial World Wind configuration. It reads World Wind configuration files and registers their

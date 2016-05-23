@@ -5,15 +5,29 @@
  */
 package gov.nasa.worldwind.terrain;
 
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.pick.*;
+import java.awt.Color;
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Intersection;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Line;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.pick.PickSupport;
+import gov.nasa.worldwind.pick.PickedObject;
 import gov.nasa.worldwind.render.DrawContext;
 import gov.nasa.worldwind.util.Logging;
-
-import javax.media.opengl.*;
-import java.awt.*;
-import java.util.*;
-import java.util.List;
 
 /**
  * This class is a container for terrain geometry.
@@ -275,7 +289,7 @@ public class SectorGeometryList extends ArrayList<SectorGeometry>
         // When the OpenGL implementation is provided by the VMware SVGA 3D graphics driver, move the per-triangle
         // color geometry's depth values toward the eye and disable depth buffer writes. This works around an issue
         // where the VMware driver breaks OpenGL's invariance requirement when per-vertex colors are enabled.
-        // See WWJ-425.
+        // See WWJ-425. 
         if (dc.getGLRuntimeCapabilities().isVMwareSVGA3D())
         {
             gl.glDepthMask(false);

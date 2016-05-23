@@ -5,12 +5,18 @@
  */
 package gov.nasa.worldwindx.examples.util;
 
-import gov.nasa.worldwind.avlist.AVKey;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.Logging;
+import com.jogamp.opengl.GL2;
 
-import javax.media.opengl.GL2;
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.render.Annotation;
+import gov.nasa.worldwind.render.AnnotationAttributes;
+import gov.nasa.worldwind.render.AnnotationNullLayout;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.GlobeAnnotation;
+import gov.nasa.worldwind.render.WWTexture;
+import gov.nasa.worldwind.util.Logging;
 
 /**
  * @author dcollins

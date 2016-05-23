@@ -5,21 +5,33 @@
  */
 package gov.nasa.worldwind.render;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Point;
+import java.awt.geom.Rectangle2D;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.glu.gl2.GLUgl2;
+
 import gov.nasa.worldwind.View;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.exception.WWRuntimeException;
-import gov.nasa.worldwind.geom.*;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Frustum;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.globes.Globe2D;
 import gov.nasa.worldwind.terrain.SectorGeometryList;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import javax.media.opengl.glu.GLU;
-import javax.media.opengl.glu.gl2.GLUgl2;
-import java.awt.*;
-import java.awt.geom.*;
-import java.io.IOException;
-import java.util.*;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLTextRenderer;
+import gov.nasa.worldwind.util.WWMath;
 
 /**
  * @author dcollins

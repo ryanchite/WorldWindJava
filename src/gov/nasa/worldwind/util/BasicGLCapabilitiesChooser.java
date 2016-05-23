@@ -5,9 +5,12 @@
  */
 package gov.nasa.worldwind.util;
 
-import javax.media.nativewindow.*;
-import javax.media.opengl.*;
 import java.util.List;
+
+import com.jogamp.nativewindow.CapabilitiesImmutable;
+import com.jogamp.nativewindow.NativeWindowException;
+import com.jogamp.opengl.DefaultGLCapabilitiesChooser;
+import com.jogamp.opengl.GLCapabilities;
 
 /**
  * BasicGLCapabilitiesChooser provides an implementation of {@link javax.media.opengl.GLCapabilitiesChooser} for use
@@ -22,11 +25,9 @@ import java.util.List;
  * @author dcollins
  * @version $Id: BasicGLCapabilitiesChooser.java 1739 2013-12-04 03:38:19Z dcollins $
  */
-public class BasicGLCapabilitiesChooser extends DefaultGLCapabilitiesChooser
-{
+public class BasicGLCapabilitiesChooser extends DefaultGLCapabilitiesChooser {
     /** Constructs a new <code>BasicGLCapabilitiesChooser</code>, but otherwise does nothing. */
-    public BasicGLCapabilitiesChooser()
-    {
+    public BasicGLCapabilitiesChooser() {
     }
 
     /**
@@ -34,19 +35,20 @@ public class BasicGLCapabilitiesChooser extends DefaultGLCapabilitiesChooser
      * hardware. When the <code>desired</code> GL capabilities does not specify device supported stereo, this calls
      * DefaultGLCapabilitiesChooser.chooseCapabilities.
      *
-     * @param desired                       the desired GL capabilities.
-     * @param available                     the list of available GL capabilities on the graphics device.
-     * @param windowSystemRecommendedChoice an index into the list of available GL capabilities indicating the window
-     *                                      system's recommended capabilities, or -1 to indicate no recommendation.
+     * @param desired
+     *            the desired GL capabilities.
+     * @param available
+     *            the list of available GL capabilities on the graphics device.
+     * @param windowSystemRecommendedChoice
+     *            an index into the list of available GL capabilities indicating the window system's recommended
+     *            capabilities, or -1 to indicate no recommendation.
      *
      * @return an index into the list of available GL capabilities.
      */
     @Override
-    public int chooseCapabilities(CapabilitiesImmutable desired,
-        List<? extends CapabilitiesImmutable> available, int windowSystemRecommendedChoice)
-    {
-        if (desired instanceof GLCapabilities && ((GLCapabilities) desired).getStereo())
-        {
+    public int chooseCapabilities(CapabilitiesImmutable desired, List<? extends CapabilitiesImmutable> available,
+            int windowSystemRecommendedChoice) {
+        if (desired instanceof GLCapabilities && ((GLCapabilities) desired).getStereo()) {
             return this.chooseStereoCapabilities(desired, available, windowSystemRecommendedChoice);
         }
 
@@ -59,21 +61,21 @@ public class BasicGLCapabilitiesChooser extends DefaultGLCapabilitiesChooser
      * superclass cannot find a match, this attempts to find a match to the desired capabilities, but without device
      * supported stereo.
      *
-     * @param desired                       the desired GL capabilities.
-     * @param available                     the list of available GL capabilities on the graphics device.
-     * @param windowSystemRecommendedChoice an index into the list of available GL capabilities indicating the window
-     *                                      system's recommended capabilities, or -1 to indicate no recommendation.
+     * @param desired
+     *            the desired GL capabilities.
+     * @param available
+     *            the list of available GL capabilities on the graphics device.
+     * @param windowSystemRecommendedChoice
+     *            an index into the list of available GL capabilities indicating the window system's recommended
+     *            capabilities, or -1 to indicate no recommendation.
      *
      * @return an index into the list of available GL capabilities.
      */
     protected int chooseStereoCapabilities(CapabilitiesImmutable desired,
-        List<? extends CapabilitiesImmutable> available, int windowSystemRecommendedChoice)
-    {
-        try
-        {
+            List<? extends CapabilitiesImmutable> available, int windowSystemRecommendedChoice) {
+        try {
             return super.chooseCapabilities(desired, available, windowSystemRecommendedChoice);
-        }
-        catch (NativeWindowException e)  // superclass cannot find a match
+        } catch (NativeWindowException e) // superclass cannot find a match
         {
             Logging.logger().warning(Logging.getMessage("generic.StereoNotSupported"));
         }

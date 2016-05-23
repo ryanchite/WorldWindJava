@@ -6,20 +6,42 @@
 
 package gov.nasa.worldwind.render;
 
+import java.nio.Buffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
+
 import com.jogamp.common.nio.Buffers;
-import gov.nasa.worldwind.*;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.Configuration;
+import gov.nasa.worldwind.WorldWind;
 import gov.nasa.worldwind.avlist.AVKey;
-import gov.nasa.worldwind.cache.*;
-import gov.nasa.worldwind.geom.*;
+import gov.nasa.worldwind.cache.BasicMemoryCache;
+import gov.nasa.worldwind.cache.GpuResourceCache;
+import gov.nasa.worldwind.cache.MemoryCache;
+import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.Box;
+import gov.nasa.worldwind.geom.Extent;
+import gov.nasa.worldwind.geom.Intersection;
+import gov.nasa.worldwind.geom.Line;
+import gov.nasa.worldwind.geom.Matrix;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Triangle;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.globes.Globe;
 import gov.nasa.worldwind.render.airspaces.Geometry;
 import gov.nasa.worldwind.terrain.Terrain;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import java.nio.*;
-import java.util.*;
+import gov.nasa.worldwind.util.GeometryBuilder;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.RestorableSupport;
 
 /**
  * A general rigid volume defined by a center position and the three axis radii. If A is the radius in the north-south

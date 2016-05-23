@@ -5,13 +5,19 @@
  */
 package gov.nasa.worldwind.layers;
 
-import gov.nasa.worldwind.View;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.render.DrawContext;
-import gov.nasa.worldwind.util.*;
+import java.awt.Color;
 
-import javax.media.opengl.*;
-import java.awt.*;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.View;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Matrix;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
 
 /**
  * Renders an atmosphere around the globe and a sky dome at low altitude.

@@ -5,10 +5,12 @@
  */
 package gov.nasa.worldwind.render;
 
-import gov.nasa.worldwind.util.*;
+import java.awt.Color;
 
-import javax.media.opengl.*;
-import java.awt.*;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.RestorableSupport;
 
 /**
  * @author tag

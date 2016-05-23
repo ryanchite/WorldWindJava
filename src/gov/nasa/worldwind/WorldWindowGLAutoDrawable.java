@@ -6,24 +6,38 @@
 
 package gov.nasa.worldwind;
 
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+
+import javax.swing.Timer;
+
+import com.jogamp.opengl.GLAutoDrawable;
+import com.jogamp.opengl.GLContext;
+import com.jogamp.opengl.GLDrawable;
+import com.jogamp.opengl.GLEventListener;
+import com.jogamp.opengl.awt.AWTGLAutoDrawable;
 import com.jogamp.opengl.util.texture.TextureIO;
+
 import gov.nasa.worldwind.cache.GpuResourceCache;
-import gov.nasa.worldwind.event.*;
+import gov.nasa.worldwind.event.Message;
+import gov.nasa.worldwind.event.PositionEvent;
+import gov.nasa.worldwind.event.RenderingEvent;
+import gov.nasa.worldwind.event.SelectEvent;
 import gov.nasa.worldwind.exception.WWAbsentRequirementException;
 import gov.nasa.worldwind.geom.Position;
-import gov.nasa.worldwind.pick.*;
+import gov.nasa.worldwind.pick.PickedObject;
+import gov.nasa.worldwind.pick.PickedObjectList;
 import gov.nasa.worldwind.render.ScreenCreditController;
-import gov.nasa.worldwind.util.*;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.PerformanceStatistic;
 import gov.nasa.worldwind.util.dashboard.DashboardController;
-
-import javax.media.opengl.*;
-import javax.media.opengl.awt.AWTGLAutoDrawable;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.beans.PropertyChangeEvent;
-import java.util.concurrent.*;
-import java.util.logging.Level;
 
 /**
  * A non-platform specific {@link WorldWindow} class. This class can be aggregated into platform-specific classes to

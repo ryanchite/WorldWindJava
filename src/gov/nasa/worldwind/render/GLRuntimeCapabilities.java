@@ -5,11 +5,14 @@
  */
 package gov.nasa.worldwind.render;
 
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.GLContext;
+
 import gov.nasa.worldwind.Configuration;
 import gov.nasa.worldwind.avlist.AVKey;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.WWUtil;
 
 /**
  * GLRuntimeCapabilities describes the GL capabilities supported by the current GL runtime. It provides the caller with

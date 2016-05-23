@@ -6,17 +6,29 @@
 
 package gov.nasa.worldwind.util;
 
-import com.jogamp.opengl.util.packrect.*;
-import com.jogamp.opengl.util.texture.*;
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Queue;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.util.packrect.BackingStoreManager;
+import com.jogamp.opengl.util.packrect.Rect;
+import com.jogamp.opengl.util.packrect.RectanglePacker;
+import com.jogamp.opengl.util.texture.Texture;
+import com.jogamp.opengl.util.texture.TextureCoords;
+import com.jogamp.opengl.util.texture.TextureData;
 import com.jogamp.opengl.util.texture.awt.AWTTextureIO;
+
 import gov.nasa.worldwind.exception.WWRuntimeException;
 import gov.nasa.worldwind.render.DrawContext;
-
-import javax.media.opengl.GL;
-import java.awt.*;
-import java.awt.image.*;
-import java.util.*;
-import java.util.Queue;
 
 /**
  * Represents a texture composed of multiple independent images. The independent images are referred to as

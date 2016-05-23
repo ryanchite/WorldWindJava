@@ -5,15 +5,21 @@
  */
 package gov.nasa.worldwind.util;
 
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.jogamp.common.nio.Buffers;
-import gov.nasa.worldwind.geom.*;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.glu.GLUtessellatorCallbackAdapter;
+
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.globes.Globe;
 import gov.nasa.worldwind.terrain.Terrain;
-
-import javax.media.opengl.GL;
-import javax.media.opengl.glu.*;
-import java.nio.*;
-import java.util.*;
 
 /**
  * @author dcollins

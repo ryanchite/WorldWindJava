@@ -6,10 +6,13 @@
 
 package gov.nasa.worldwind.render;
 
-import gov.nasa.worldwind.util.Logging;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Rectangle;
 
-import javax.media.opengl.GL;
-import java.awt.*;
+import com.jogamp.opengl.GL;
+
+import gov.nasa.worldwind.util.Logging;
 
 /**
  * A <code>{@link gov.nasa.worldwind.render.ScreenBalloon}</code> that displays HTML, JavaScript, and Flash content

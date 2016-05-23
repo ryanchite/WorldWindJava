@@ -6,20 +6,41 @@
 
 package gov.nasa.worldwind.formats.shapefile;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+
 import com.jogamp.common.nio.Buffers;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.cache.GpuResourceCache;
-import gov.nasa.worldwind.geom.*;
+import gov.nasa.worldwind.geom.Extent;
+import gov.nasa.worldwind.geom.Matrix;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.layers.Layer;
 import gov.nasa.worldwind.pick.PickSupport;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import java.awt.*;
-import java.nio.*;
-import java.util.*;
-import java.util.List;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.OrderedRenderable;
+import gov.nasa.worldwind.render.PolylineTessellator;
+import gov.nasa.worldwind.render.PreRenderable;
+import gov.nasa.worldwind.render.ShapeAttributes;
+import gov.nasa.worldwind.render.SurfaceObjectTileBuilder;
+import gov.nasa.worldwind.render.SurfaceRenderable;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.Range;
+import gov.nasa.worldwind.util.SurfaceTileDrawContext;
+import gov.nasa.worldwind.util.VecBuffer;
 
 /**
  * @author dcollins

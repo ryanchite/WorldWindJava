@@ -6,15 +6,24 @@
 
 package gov.nasa.worldwind.util.tree;
 
+import java.awt.Color;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+
+import com.jogamp.opengl.GL2;
+
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.event.SelectEvent;
 import gov.nasa.worldwind.pick.PickSupport;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import java.awt.*;
-import java.awt.event.*;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.Renderable;
+import gov.nasa.worldwind.util.HotSpot;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.OGLUtil;
+import gov.nasa.worldwind.util.WWMath;
 
 /**
  * A scrollbar component. The scrollable range is defined by four values: min, max, value, and extent. {@code value} is

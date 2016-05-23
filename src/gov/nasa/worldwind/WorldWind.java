@@ -6,17 +6,26 @@
 
 package gov.nasa.worldwind;
 
+import java.beans.PropertyChangeListener;
+import java.util.logging.Level;
+
+import javax.imageio.spi.IIORegistry;
+
+import com.jogamp.opengl.GL;
+
 import gov.nasa.worldwind.avlist.AVKey;
-import gov.nasa.worldwind.cache.*;
+import gov.nasa.worldwind.cache.FileStore;
+import gov.nasa.worldwind.cache.MemoryCache;
+import gov.nasa.worldwind.cache.MemoryCacheSet;
+import gov.nasa.worldwind.cache.SessionCache;
 import gov.nasa.worldwind.exception.WWRuntimeException;
 import gov.nasa.worldwind.formats.tiff.GeotiffImageReaderSpi;
 import gov.nasa.worldwind.retrieve.RetrievalService;
-import gov.nasa.worldwind.util.*;
-
-import javax.imageio.spi.IIORegistry;
-import javax.media.opengl.GL;
-import java.beans.PropertyChangeListener;
-import java.util.logging.Level;
+import gov.nasa.worldwind.util.BasicScheduledTaskService;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.NetworkStatus;
+import gov.nasa.worldwind.util.ScheduledTaskService;
+import gov.nasa.worldwind.util.TaskService;
 
 /**
  * @author Tom Gaskins

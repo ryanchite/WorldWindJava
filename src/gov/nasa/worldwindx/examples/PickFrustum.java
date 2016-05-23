@@ -5,18 +5,39 @@
  */
 package gov.nasa.worldwindx.examples;
 
-import gov.nasa.worldwind.event.*;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.layers.*;
-import gov.nasa.worldwind.render.*;
-
-import javax.media.opengl.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.JToggleButton;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.event.SelectEvent;
+import gov.nasa.worldwind.event.SelectListener;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.PickPointFrustum;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.layers.IconLayer;
+import gov.nasa.worldwind.layers.RenderableLayer;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.OrderedRenderable;
+import gov.nasa.worldwind.render.UserFacingIcon;
+import gov.nasa.worldwind.render.WWIcon;
 
 /**
  * This example illustrates how to change the size of the pick frustum, and how a smaller pick frustum can give better

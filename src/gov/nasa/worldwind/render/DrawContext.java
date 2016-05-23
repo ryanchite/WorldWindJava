@@ -5,23 +5,45 @@
  */
 package gov.nasa.worldwind.render;
 
-import com.jogamp.opengl.util.texture.TextureCoords;
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.cache.GpuResourceCache;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.globes.Globe;
-import gov.nasa.worldwind.layers.*;
-import gov.nasa.worldwind.pick.*;
-import gov.nasa.worldwind.terrain.*;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import javax.media.opengl.glu.GLU;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.nio.FloatBuffer;
-import java.util.*;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GLContext;
+import com.jogamp.opengl.GLDrawable;
+import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.util.texture.TextureCoords;
+
+import gov.nasa.worldwind.Disposable;
+import gov.nasa.worldwind.Model;
+import gov.nasa.worldwind.SceneController;
+import gov.nasa.worldwind.View;
+import gov.nasa.worldwind.WWObject;
+import gov.nasa.worldwind.cache.GpuResourceCache;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Extent;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.globes.Globe;
+import gov.nasa.worldwind.layers.AnnotationLayer;
+import gov.nasa.worldwind.layers.Layer;
+import gov.nasa.worldwind.layers.LayerList;
+import gov.nasa.worldwind.pick.PickedObject;
+import gov.nasa.worldwind.pick.PickedObjectList;
+import gov.nasa.worldwind.terrain.SectorGeometryList;
+import gov.nasa.worldwind.terrain.Terrain;
+import gov.nasa.worldwind.util.ClutterFilter;
+import gov.nasa.worldwind.util.PerformanceStatistic;
+import gov.nasa.worldwind.util.PickPointFrustumList;
 
 /**
  * @author Tom Gaskins

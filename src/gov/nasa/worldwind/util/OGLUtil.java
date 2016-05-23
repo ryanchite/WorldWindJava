@@ -5,16 +5,24 @@
  */
 package gov.nasa.worldwind.util;
 
-import com.jogamp.opengl.util.texture.*;
-import com.jogamp.opengl.util.texture.awt.AWTTextureIO;
-import com.jogamp.opengl.util.texture.spi.DDSImage;
-import gov.nasa.worldwind.geom.Vec4;
+import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
-import javax.media.opengl.*;
-import java.awt.image.*;
-import java.io.*;
-import java.net.URL;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.GLProfile;
+import com.jogamp.opengl.util.texture.TextureData;
+import com.jogamp.opengl.util.texture.TextureIO;
+import com.jogamp.opengl.util.texture.awt.AWTTextureIO;
+import com.jogamp.opengl.util.texture.spi.DDSImage;
+
+import gov.nasa.worldwind.geom.Vec4;
 
 /**
  * A collection of OpenGL utility methods, all static.

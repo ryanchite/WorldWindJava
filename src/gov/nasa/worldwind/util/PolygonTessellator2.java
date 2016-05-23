@@ -6,8 +6,12 @@
 
 package gov.nasa.worldwind.util;
 
-import javax.media.opengl.glu.*;
-import java.nio.*;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+
+import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.glu.GLUtessellator;
+import com.jogamp.opengl.glu.GLUtessellatorCallbackAdapter;
 
 /**
  * TODO: Combine these capabilities into PolygonTessellator with support for pattern used by ShapefileExtrudedPolygons.

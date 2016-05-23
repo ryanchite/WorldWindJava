@@ -5,14 +5,18 @@
  */
 package gov.nasa.worldwind.pick;
 
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
 import gov.nasa.worldwind.geom.Position;
 import gov.nasa.worldwind.layers.Layer;
 import gov.nasa.worldwind.render.DrawContext;
 import gov.nasa.worldwind.util.Range;
-
-import javax.media.opengl.*;
-import java.awt.*;
-import java.util.*;
 
 /**
  * @author tag

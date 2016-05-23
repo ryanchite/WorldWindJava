@@ -5,14 +5,22 @@
  */
 package gov.nasa.worldwindx.applications.sar.segmentplane;
 
-import gov.nasa.worldwind.avlist.*;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.Logging;
+import java.awt.Color;
+import java.awt.Font;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
-import javax.media.opengl.*;
-import java.awt.*;
-import java.util.*;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.avlist.AVList;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.Material;
+import gov.nasa.worldwind.util.Logging;
 
 /**
  * @author dcollins

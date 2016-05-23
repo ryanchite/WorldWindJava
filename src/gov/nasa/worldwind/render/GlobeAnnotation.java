@@ -5,12 +5,22 @@
  */
 package gov.nasa.worldwind.render;
 
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.util.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Rectangle;
 
-import javax.media.opengl.GL;
-import java.awt.*;
+import com.jogamp.opengl.GL;
+
+import gov.nasa.worldwind.Locatable;
+import gov.nasa.worldwind.Movable;
+import gov.nasa.worldwind.View;
+import gov.nasa.worldwind.WorldWind;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.RestorableSupport;
+import gov.nasa.worldwind.util.WWMath;
 
 /**
  * Represent a text label attached to a Position on the globe and its rendering attributes.
@@ -20,8 +30,7 @@ import java.awt.*;
  * @see AbstractAnnotation
  * @see AnnotationAttributes
  */
-public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Movable
-{
+public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Movable {
     protected Position position;
     protected double heightInMeter = 0;
 
@@ -30,38 +39,44 @@ public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Mo
     /**
      * Creates a <code>GlobeAnnotation</code> with the given text, at the given globe <code>Position</code>.
      *
-     * @param text     the annotation text.
-     * @param position the annotation <code>Position</code>.
+     * @param text
+     *            the annotation text.
+     * @param position
+     *            the annotation <code>Position</code>.
      */
-    public GlobeAnnotation(String text, Position position)
-    {
+    public GlobeAnnotation(String text, Position position) {
         this.init(text, position, null, null);
     }
 
     /**
-     * Creates a <code>GlobeAnnotation</code> with the given text, at the given globe <code>Position</code>. Specify
-     * the <code>Font</code> to be used.
+     * Creates a <code>GlobeAnnotation</code> with the given text, at the given globe <code>Position</code>. Specify the
+     * <code>Font</code> to be used.
      *
-     * @param text     the annotation text.
-     * @param position the annotation <code>Position</code>.
-     * @param font     the <code>Font</code> to use.
+     * @param text
+     *            the annotation text.
+     * @param position
+     *            the annotation <code>Position</code>.
+     * @param font
+     *            the <code>Font</code> to use.
      */
-    public GlobeAnnotation(String text, Position position, Font font)
-    {
+    public GlobeAnnotation(String text, Position position, Font font) {
         this.init(text, position, font, null);
     }
 
     /**
-     * Creates a <code>GlobeAnnotation</code> with the given text, at the given globe <code>Position</code>. Specify
-     * the <code>Font</code> and text <code>Color</code> to be used.
+     * Creates a <code>GlobeAnnotation</code> with the given text, at the given globe <code>Position</code>. Specify the
+     * <code>Font</code> and text <code>Color</code> to be used.
      *
-     * @param text      the annotation text.
-     * @param position  the annotation <code>Position</code>.
-     * @param font      the <code>Font</code> to use.
-     * @param textColor the text <code>Color</code>.
+     * @param text
+     *            the annotation text.
+     * @param position
+     *            the annotation <code>Position</code>.
+     * @param font
+     *            the <code>Font</code> to use.
+     * @param textColor
+     *            the text <code>Color</code>.
      */
-    public GlobeAnnotation(String text, Position position, Font font, Color textColor)
-    {
+    public GlobeAnnotation(String text, Position position, Font font, Color textColor) {
         this.init(text, position, font, textColor);
     }
 
@@ -69,28 +84,27 @@ public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Mo
      * Creates a <code>GlobeAnnotation</code> with the given text, at the given globe <code>Position</code>. Specify the
      * default {@link AnnotationAttributes} set.
      *
-     * @param text     the annotation text.
-     * @param position the annotation <code>Position</code>.
-     * @param defaults the default {@link AnnotationAttributes} set.
+     * @param text
+     *            the annotation text.
+     * @param position
+     *            the annotation <code>Position</code>.
+     * @param defaults
+     *            the default {@link AnnotationAttributes} set.
      */
-    public GlobeAnnotation(String text, Position position, AnnotationAttributes defaults)
-    {
-        if (text == null)
-        {
+    public GlobeAnnotation(String text, Position position, AnnotationAttributes defaults) {
+        if (text == null) {
             String message = Logging.getMessage("nullValue.StringIsNull");
             Logging.logger().severe(message);
             throw new IllegalArgumentException(message);
         }
 
-        if (position == null)
-        {
+        if (position == null) {
             String message = Logging.getMessage("nullValue.PositionIsNull");
             Logging.logger().severe(message);
             throw new IllegalArgumentException(message);
         }
 
-        if (defaults == null)
-        {
+        if (defaults == null) {
             String message = Logging.getMessage("nullValue.AnnotationAttributesIsNull");
             Logging.logger().severe(message);
             throw new IllegalArgumentException(message);
@@ -101,17 +115,14 @@ public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Mo
         this.getAttributes().setDefaults(defaults);
     }
 
-    private void init(String text, Position position, Font font, Color textColor)
-    {
-        if (text == null)
-        {
+    private void init(String text, Position position, Font font, Color textColor) {
+        if (text == null) {
             String message = Logging.getMessage("nullValue.StringIsNull");
             Logging.logger().severe(message);
             throw new IllegalArgumentException(message);
         }
 
-        if (position == null)
-        {
+        if (position == null) {
             String message = Logging.getMessage("nullValue.PositionIsNull");
             Logging.logger().severe(message);
             throw new IllegalArgumentException(message);
@@ -123,13 +134,11 @@ public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Mo
         this.getAttributes().setTextColor(textColor);
     }
 
-    public Position getPosition()
-    {
+    public Position getPosition() {
         return this.position;
     }
 
-    public void setPosition(Position position)
-    {
+    public void setPosition(Position position) {
         this.position = position;
     }
 
@@ -137,72 +146,68 @@ public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Mo
      * Get the annotation's altitude mode. The altitude mode may be null, indicating that the legacy altitude mode
      * described below will be used.
      * <p/>
-     * <b>Legacy altitude mode</b><br/>If the annotation Position elevation is lower then the highest elevation on the
-     * globe, the annotation will be drawn above the ground using its elevation as an offset, scaled by the current
-     * vertical exaggeration. Otherwise, the original elevation will be used. This functionality is supported for
-     * backward compatibility. New code that uses Globe Annotation should specify an altitude mode.
+     * <b>Legacy altitude mode</b><br/>
+     * If the annotation Position elevation is lower then the highest elevation on the globe, the annotation will be
+     * drawn above the ground using its elevation as an offset, scaled by the current vertical exaggeration. Otherwise,
+     * the original elevation will be used. This functionality is supported for backward compatibility. New code that
+     * uses Globe Annotation should specify an altitude mode.
      *
-     * @return The altitude mode, one of {@link WorldWind#CLAMP_TO_GROUND}, {@link WorldWind#RELATIVE_TO_GROUND}, {@link
-     *         WorldWind#ABSOLUTE}, or {@code null}.
+     * @return The altitude mode, one of {@link WorldWind#CLAMP_TO_GROUND}, {@link WorldWind#RELATIVE_TO_GROUND},
+     *         {@link WorldWind#ABSOLUTE}, or {@code null}.
      *
      * @see #setAltitudeMode(Integer)
      */
-    public Integer getAltitudeMode()
-    {
+    public Integer getAltitudeMode() {
         return altitudeMode;
     }
 
     /**
      * Set the annotation's altitude mode.
      *
-     * @param altitudeMode The altitude mode, one of {@link WorldWind#CLAMP_TO_GROUND}, {@link
-     *                     WorldWind#RELATIVE_TO_GROUND}, or {@link WorldWind#ABSOLUTE}. {@code null} indicates that the
-     *                     legacy altitude mode should be used. See {@link #getAltitudeMode()} for details on this
-     *                     mode.
+     * @param altitudeMode
+     *            The altitude mode, one of {@link WorldWind#CLAMP_TO_GROUND}, {@link WorldWind#RELATIVE_TO_GROUND}, or
+     *            {@link WorldWind#ABSOLUTE}. {@code null} indicates that the legacy altitude mode should be used. See
+     *            {@link #getAltitudeMode()} for details on this mode.
      *
      * @see #getAltitudeMode()
      */
-    public void setAltitudeMode(Integer altitudeMode)
-    {
+    public void setAltitudeMode(Integer altitudeMode) {
         this.altitudeMode = altitudeMode;
     }
 
     /**
      * Returns the real world height of the annotation frame in meter. If this dimension is greater then zero, the
      * annotation will be scaled so as to maintain this fixed dimension, which makes it appear as part of the
-     * surrounding terrain. This overrides min and max distance scaling - however min distance opacity is still accounted
-     * for.
+     * surrounding terrain. This overrides min and max distance scaling - however min distance opacity is still
+     * accounted for.
      * <p/>
      * If this dimension is zero, the annotation always maintains the same apparent size with possible scaling relative
      * to the viewport center point if min and max distance scale factors are not one.
      *
      * @return the real world height of the annotation frame in meter.
      */
-    public double getHeightInMeter()
-    {
+    public double getHeightInMeter() {
         return this.heightInMeter;
     }
 
     /**
      * Set the real world height of the annotation frame in meter. If this dimension is greater then zero, the
      * annotation will be scaled so as to maintain this fixed dimension, which makes it appear as part of the
-     * surrounding terrain. This overrides min and max distance scaling - however min distance opacity is still accounted
-     * for.
+     * surrounding terrain. This overrides min and max distance scaling - however min distance opacity is still
+     * accounted for.
      * <p/>
      * If this dimension is zero, the annotation always maintains the same apparent size with possible scaling relative
      * to the viewport center point if min and max distance scale factors are not one.
      *
-     * @param meters the real world height of the annotation frame in meter.
+     * @param meters
+     *            the real world height of the annotation frame in meter.
      */
-    public void setHeightInMeter(double meters)
-    {
+    public void setHeightInMeter(double meters) {
         this.heightInMeter = meters;
     }
 
-    public void move(Position position)
-    {
-        if (position == null)
-        {
+    public void move(Position position) {
+        if (position == null) {
             String msg = Logging.getMessage("nullValue.PositionIsNull");
             Logging.logger().severe(msg);
             throw new IllegalArgumentException(msg);
@@ -211,10 +216,8 @@ public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Mo
         this.position = this.position.add(position);
     }
 
-    public void moveTo(Position position)
-    {
-        if (position == null)
-        {
+    public void moveTo(Position position) {
+        if (position == null) {
             String msg = Logging.getMessage("nullValue.PositionIsNull");
             Logging.logger().severe(msg);
             throw new IllegalArgumentException(msg);
@@ -223,17 +226,15 @@ public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Mo
         this.position = position;
     }
 
-    public Position getReferencePosition()
-    {
+    public Position getReferencePosition() {
         return this.position;
     }
 
-    //**************************************************************//
-    //********************  Rendering  *****************************//
-    //**************************************************************//
+    // **************************************************************//
+    // ******************** Rendering *****************************//
+    // **************************************************************//
 
-    protected Rectangle computeBounds(DrawContext dc)
-    {
+    protected Rectangle computeBounds(DrawContext dc) {
         Vec4 point = this.getAnnotationDrawPoint(dc);
         if (point == null)
             return null;
@@ -252,7 +253,7 @@ public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Mo
         double width = size.width * finalScale;
         double height = size.height * finalScale;
         double x = screenPoint.x - width / 2 + offsetX;
-        double y = screenPoint.y + offsetY;   // use OGL coordinate system
+        double y = screenPoint.y + offsetY; // use OGL coordinate system
 
         Rectangle frameRect = new Rectangle((int) x, (int) y, (int) width, (int) height);
 
@@ -260,8 +261,7 @@ public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Mo
         return this.computeBoundingRectangle(frameRect, (int) screenPoint.x, (int) screenPoint.y);
     }
 
-    protected void doRenderNow(DrawContext dc)
-    {
+    protected void doRenderNow(DrawContext dc) {
         if (dc.isPickingMode() && this.getPickSupport() == null)
             return;
 
@@ -284,29 +284,23 @@ public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Mo
 
         this.setDepthFunc(dc, screenPoint);
         this.drawTopLevelAnnotation(dc, (int) screenPoint.x, (int) screenPoint.y, size.width, size.height,
-            scaleAndOpacity[0], scaleAndOpacity[1], pos);
+                scaleAndOpacity[0], scaleAndOpacity[1], pos);
     }
 
-    protected double[] computeDistanceScaleAndOpacity(DrawContext dc, Vec4 point, Dimension size)
-    {
+    protected double[] computeDistanceScaleAndOpacity(DrawContext dc, Vec4 point, Dimension size) {
         double scale = 1, opacity = 1;
 
-        if (this.heightInMeter <= 0)
-        {
+        if (this.heightInMeter <= 0) {
             // Determine scale and opacity factors based on distance from eye vs the distance to the look at point.
             Double lookAtDistance = this.computeLookAtDistance(dc);
-            if (lookAtDistance != null)
-            {
+            if (lookAtDistance != null) {
                 double eyeDistance = dc.getView().getEyePoint().distanceTo3(point);
                 double distanceFactor = Math.sqrt(lookAtDistance / eyeDistance);
-                scale = WWMath.clamp(distanceFactor,
-                    this.attributes.getDistanceMinScale(), this.attributes.getDistanceMaxScale());
-                opacity = WWMath.clamp(distanceFactor,
-                    this.attributes.getDistanceMinOpacity(), 1);
+                scale = WWMath.clamp(distanceFactor, this.attributes.getDistanceMinScale(),
+                        this.attributes.getDistanceMaxScale());
+                opacity = WWMath.clamp(distanceFactor, this.attributes.getDistanceMinOpacity(), 1);
             }
-        }
-        else
-        {
+        } else {
             // Determine scale and opacity so as to maintain real world dimension
             double distance = dc.getView().getEyePoint().distanceTo3(point);
             double pixelSize = dc.getView().computePixelSizeAtDistance(distance);
@@ -315,25 +309,22 @@ public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Mo
             opacity = WWMath.clamp(scale, this.attributes.getDistanceMinOpacity(), 1);
         }
 
-        return new double[] {scale, opacity};
+        return new double[] { scale, opacity };
     }
 
-    protected Double computeLookAtDistance(DrawContext dc)
-    {
+    protected Double computeLookAtDistance(DrawContext dc) {
         // TODO: Remove this method once the new mechanism for scaling and opacity is in place.
         View view = dc.getView();
 
         // Get point in the middle of the screen
-        Position groundPos = view.computePositionFromScreenPoint(
-            view.getViewport().getCenterX(), view.getViewport().getCenterY());
+        Position groundPos = view.computePositionFromScreenPoint(view.getViewport().getCenterX(),
+                view.getViewport().getCenterY());
 
-        if (groundPos == null)
-        {
+        if (groundPos == null) {
             // Decrease the point's y coordinate until it intersects the globe.
             Rectangle vp = view.getViewport();
             double y = view.getViewport().getCenterY() + 1;
-            while (groundPos == null && y < vp.height - 1)
-            {
+            while (groundPos == null && y < vp.height - 1) {
                 groundPos = view.computePositionFromScreenPoint(view.getViewport().getCenterX(), y++);
             }
         }
@@ -346,32 +337,25 @@ public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Mo
             return null;
     }
 
-    protected void setDepthFunc(DrawContext dc, Vec4 screenPoint)
-    {
+    protected void setDepthFunc(DrawContext dc, Vec4 screenPoint) {
         GL gl = dc.getGL();
 
         Position eyePos = dc.getView().getEyePosition();
-        if (eyePos == null)
-        {
+        if (eyePos == null) {
             gl.glDepthFunc(GL.GL_ALWAYS);
             return;
         }
 
         double altitude = eyePos.getElevation();
-        if (altitude < (dc.getGlobe().getMaxElevation() * dc.getVerticalExaggeration()))
-        {
+        if (altitude < (dc.getGlobe().getMaxElevation() * dc.getVerticalExaggeration())) {
             double depth = screenPoint.z - (8d * 0.00048875809d);
             depth = depth < 0d ? 0d : (depth > 1d ? 1d : depth);
             gl.glDepthFunc(GL.GL_LESS);
             gl.glDepthRange(depth, depth);
-        }
-        else if (screenPoint.z >= 1d)
-        {
+        } else if (screenPoint.z >= 1d) {
             gl.glDepthFunc(GL.GL_EQUAL);
             gl.glDepthRange(1d, 1d);
-        }
-        else
-        {
+        } else {
             gl.glDepthFunc(GL.GL_ALWAYS);
         }
     }
@@ -381,36 +365,28 @@ public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Mo
      * annotation point, if an altitude mode has been set. If the altitude mode is null, then the legacy altitude mode
      * described in {@link #getAltitudeMode()} will be used to determine the point.
      *
-     * @param dc the current DrawContext.
+     * @param dc
+     *            the current DrawContext.
      *
      * @return the annotation draw Cartesian point
      *
      * @see #getAltitudeMode()
      */
-    public Vec4 getAnnotationDrawPoint(DrawContext dc)
-    {
+    public Vec4 getAnnotationDrawPoint(DrawContext dc) {
         Vec4 drawPoint;
 
         Position pos = this.getPosition();
         Integer altitudeMode = this.getAltitudeMode();
 
-        if (dc.is2DGlobe())
-        {
+        if (dc.is2DGlobe()) {
             drawPoint = dc.computeTerrainPoint(pos.getLatitude(), pos.getLongitude(), 0);
-        }
-        else if (altitudeMode == null)
-        {
+        } else if (altitudeMode == null) {
             drawPoint = getAnnotationDrawPointLegacy(dc);
-        }
-        else if (altitudeMode == WorldWind.CLAMP_TO_GROUND)
-        {
+        } else if (altitudeMode == WorldWind.CLAMP_TO_GROUND) {
             drawPoint = dc.computeTerrainPoint(pos.getLatitude(), pos.getLongitude(), 0);
-        }
-        else if (altitudeMode == WorldWind.RELATIVE_TO_GROUND)
-        {
+        } else if (altitudeMode == WorldWind.RELATIVE_TO_GROUND) {
             drawPoint = dc.computeTerrainPoint(pos.getLatitude(), pos.getLongitude(), pos.getAltitude());
-        }
-        else  // ABSOLUTE
+        } else // ABSOLUTE
         {
             double height = pos.getElevation() * dc.getVerticalExaggeration();
             drawPoint = dc.getGlobe().computePointFromPosition(pos.getLatitude(), pos.getLongitude(), height);
@@ -423,52 +399,46 @@ public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Mo
      * Compute the draw point using the legacy altitude mode. See {@link #getAltitudeMode()} for details on the legacy
      * mode.
      *
-     * @param dc the current DrawContext.
+     * @param dc
+     *            the current DrawContext.
      *
      * @return the annotation draw Cartesian point
      *
      * @see #getAltitudeMode()
      */
-    protected Vec4 getAnnotationDrawPointLegacy(DrawContext dc)
-    {
+    protected Vec4 getAnnotationDrawPointLegacy(DrawContext dc) {
         Vec4 drawPoint = null;
 
         Position pos = this.getPosition();
         if (pos.getElevation() < dc.getGlobe().getMaxElevation())
             drawPoint = dc.getSurfaceGeometry().getSurfacePoint(pos.getLatitude(), pos.getLongitude(),
-                pos.getElevation() * dc.getVerticalExaggeration());
+                    pos.getElevation() * dc.getVerticalExaggeration());
 
         if (drawPoint == null)
-            drawPoint = dc.getGlobe().computePointFromPosition(
-                dc.getVerticalExaggeration() == 1 ? pos
+            drawPoint = dc.getGlobe().computePointFromPosition(dc.getVerticalExaggeration() == 1 ? pos
                     : new Position(pos, pos.getElevation() * dc.getVerticalExaggeration()));
 
         return drawPoint;
     }
 
-    //**************************************************************//
-    //********************  Restorable State  **********************//
-    //**************************************************************//
+    // **************************************************************//
+    // ******************** Restorable State **********************//
+    // **************************************************************//
 
     /**
      * Returns an XML state document String describing the public attributes of this GlobeAnnotation.
      *
      * @return XML state document string describing this GlobeAnnotation.
      */
-    public String getRestorableState()
-    {
+    public String getRestorableState() {
         RestorableSupport restorableSupport = null;
 
         // Try to parse the superclass' xml state document, if it defined one.
         String superStateInXml = super.getRestorableState();
-        if (superStateInXml != null)
-        {
-            try
-            {
+        if (superStateInXml != null) {
+            try {
                 restorableSupport = RestorableSupport.parse(superStateInXml);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 // Parsing the document specified by the superclass failed.
                 String message = Logging.getMessage("generic.ExceptionAttemptingToParseStateXml", superStateInXml);
                 Logging.logger().severe(message);
@@ -484,19 +454,14 @@ public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Mo
 
         // Save the position property only if all parts (latitude, longitude, and elevation) can be saved.
         // We will not save a partial position (for example, just the elevation).
-        if (this.position != null
-            && this.position.getLatitude() != null
-            && this.position.getLongitude() != null)
-        {
+        if (this.position != null && this.position.getLatitude() != null && this.position.getLongitude() != null) {
             RestorableSupport.StateObject positionStateObj = restorableSupport.addStateObject("position");
-            if (positionStateObj != null)
-            {
+            if (positionStateObj != null) {
                 restorableSupport.addStateValueAsDouble(positionStateObj, "latitude",
-                    this.position.getLatitude().degrees);
+                        this.position.getLatitude().degrees);
                 restorableSupport.addStateValueAsDouble(positionStateObj, "longitude",
-                    this.position.getLongitude().degrees);
-                restorableSupport.addStateValueAsDouble(positionStateObj, "elevation",
-                    this.position.getElevation());
+                        this.position.getLongitude().degrees);
+                restorableSupport.addStateValueAsDouble(positionStateObj, "elevation", this.position.getElevation());
             }
         }
 
@@ -509,37 +474,31 @@ public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Mo
      * IllegalArgumentException. Unknown structures in <code>stateInXml</code> are benign, because they will simply be
      * ignored.
      *
-     * @param stateInXml an XML document String describing a GlobeAnnotation.
+     * @param stateInXml
+     *            an XML document String describing a GlobeAnnotation.
      *
-     * @throws IllegalArgumentException If <code>stateInXml</code> is null, or if <code>stateInXml</code> is not a well
-     *                                  formed XML document String.
+     * @throws IllegalArgumentException
+     *             If <code>stateInXml</code> is null, or if <code>stateInXml</code> is not a well formed XML document
+     *             String.
      */
-    public void restoreState(String stateInXml)
-    {
-        if (stateInXml == null)
-        {
+    public void restoreState(String stateInXml) {
+        if (stateInXml == null) {
             String message = Logging.getMessage("nullValue.StringIsNull");
             Logging.logger().severe(message);
             throw new IllegalArgumentException(message);
         }
 
         // Allow the superclass to restore it's state.
-        try
-        {
+        try {
             super.restoreState(stateInXml);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             // Superclass will log the exception.
         }
 
         RestorableSupport restorableSupport;
-        try
-        {
+        try {
             restorableSupport = RestorableSupport.parse(stateInXml);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             // Parsing the document specified by stateInXml failed.
             String message = Logging.getMessage("generic.ExceptionAttemptingToParseStateXml", stateInXml);
             Logging.logger().severe(message);
@@ -549,8 +508,7 @@ public class GlobeAnnotation extends AbstractAnnotation implements Locatable, Mo
         // Restore the position property only if all parts are available.
         // We will not restore a partial position (for example, just the latitude).
         RestorableSupport.StateObject positionStateObj = restorableSupport.getStateObject("position");
-        if (positionStateObj != null)
-        {
+        if (positionStateObj != null) {
             Double latitudeState = restorableSupport.getStateValueAsDouble(positionStateObj, "latitude");
             Double longitudeState = restorableSupport.getStateValueAsDouble(positionStateObj, "longitude");
             Double elevationState = restorableSupport.getStateValueAsDouble(positionStateObj, "elevation");

@@ -5,16 +5,23 @@
  */
 package gov.nasa.worldwind.render;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import com.jogamp.opengl.GL2;
+
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.geom.Position;
-import gov.nasa.worldwind.pick.*;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import java.awt.*;
-import java.awt.geom.*;
-import java.util.*;
-import java.util.regex.*;
+import gov.nasa.worldwind.pick.PickSupport;
+import gov.nasa.worldwind.pick.PickedObject;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLTextRenderer;
 
 /**
  * Multi line, rectangle bound text renderer with (very) minimal html support. <p> The {@link MultiLineTextRenderer}

@@ -5,15 +5,21 @@
  */
 package gov.nasa.worldwind.render;
 
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.globes.Globe;
-import gov.nasa.worldwind.util.*;
-import gov.nasa.worldwind.view.orbit.OrbitView;
-
-import javax.media.opengl.GL2;
-import java.awt.*;
-import java.util.*;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.globes.Globe;
+import gov.nasa.worldwind.util.SurfaceTileDrawContext;
+import gov.nasa.worldwind.util.WWMath;
+import gov.nasa.worldwind.view.orbit.OrbitView;
 
 /**
  * Surface renderable.

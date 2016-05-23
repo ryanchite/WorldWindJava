@@ -6,17 +6,29 @@
 
 package gov.nasa.worldwind.symbology.milstd2525.graphics;
 
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.avlist.*;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.symbology.AbstractTacticalSymbol;
-import gov.nasa.worldwind.symbology.milstd2525.*;
-import gov.nasa.worldwind.util.Logging;
+import java.awt.Point;
+import java.awt.geom.Point2D;
 
-import javax.media.opengl.*;
-import java.awt.*;
-import java.awt.geom.*;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.Configuration;
+import gov.nasa.worldwind.WorldWind;
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.avlist.AVList;
+import gov.nasa.worldwind.avlist.AVListImpl;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Matrix;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.Material;
+import gov.nasa.worldwind.render.Offset;
+import gov.nasa.worldwind.symbology.AbstractTacticalSymbol;
+import gov.nasa.worldwind.symbology.milstd2525.MilStd2525Constants;
+import gov.nasa.worldwind.symbology.milstd2525.MilStd2525ModifierRetriever;
+import gov.nasa.worldwind.symbology.milstd2525.SymbolCode;
+import gov.nasa.worldwind.util.Logging;
 
 /**
  * Tactical symbol implementation to render the echelon modifier as part of a tactical graphic.

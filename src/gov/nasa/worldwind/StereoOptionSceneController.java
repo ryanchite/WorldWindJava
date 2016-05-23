@@ -6,11 +6,13 @@
 
 package gov.nasa.worldwind;
 
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.GLCapabilitiesImmutable;
+
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.render.DrawContext;
-
-import javax.media.opengl.*;
 
 /**
  * TODO: This file needs to be updated to implement "correct" stereo, as described at:
@@ -32,8 +34,7 @@ import javax.media.opengl.*;
  * @author tag
  * @version $Id: StereoOptionSceneController.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class StereoOptionSceneController extends BasicSceneController implements StereoSceneController
-{
+public class StereoOptionSceneController extends BasicSceneController implements StereoSceneController {
     /**
      * The default focus angle. May be specified in the World Wind configuration file as the
      * <code>gov.nasa.worldwind.StereoFocusAngle</code> property. The default if not specified in the configuration is
@@ -59,8 +60,7 @@ public class StereoOptionSceneController extends BasicSceneController implements
     protected boolean inStereo = false;
 
     /** Constructs an instance and initializes its stereo mode to */
-    public StereoOptionSceneController()
-    {
+    public StereoOptionSceneController() {
         String stereo = System.getProperty(AVKey.STEREO_MODE);
 
         if ("redblue".equalsIgnoreCase(stereo))
@@ -69,46 +69,40 @@ public class StereoOptionSceneController extends BasicSceneController implements
             this.setStereoMode(AVKey.STEREO_MODE_DEVICE);
     }
 
-    public void setStereoMode(String mode)
-    {
+    public void setStereoMode(String mode) {
         this.stereoMode = mode != null ? mode : AVKey.STEREO_MODE_NONE;
 
         // If device-implemented stereo is used, stereo is considered always in effect no matter what the stereo mode.
         this.inStereo = this.isHardwareStereo() || AVKey.STEREO_MODE_RED_BLUE.equals(this.stereoMode);
     }
 
-    public String getStereoMode()
-    {
+    public String getStereoMode() {
         return this.stereoMode;
     }
 
     /**
      * {@inheritDoc} The default focus angle is 1.6 degrees.
      *
-     * @param a the left-right eye direction difference. If null, the angle is set to 0.
+     * @param a
+     *            the left-right eye direction difference. If null, the angle is set to 0.
      */
-    public void setFocusAngle(Angle a)
-    {
+    public void setFocusAngle(Angle a) {
         this.focusAngle = a != null ? a : Angle.ZERO;
     }
 
-    public Angle getFocusAngle()
-    {
+    public Angle getFocusAngle() {
         return this.focusAngle;
     }
 
-    public void setSwapEyes(boolean swapEyes)
-    {
+    public void setSwapEyes(boolean swapEyes) {
         this.swapEyes = swapEyes;
     }
 
-    public boolean isSwapEyes()
-    {
+    public boolean isSwapEyes() {
         return this.swapEyes;
     }
 
-    public boolean isHardwareStereo()
-    {
+    public boolean isHardwareStereo() {
         return this.hardwareStereo;
     }
 
@@ -119,25 +113,21 @@ public class StereoOptionSceneController extends BasicSceneController implements
      * returns true even if the stereo mode is {@link AVKey#STEREO_MODE_NONE}. In this case, individual stereo images
      * are drawn for left and right eyes in order to prevent a blurred scene.
      */
-    public boolean isInStereo()
-    {
+    public boolean isInStereo() {
         return this.inStereo;
     }
 
     @Override
-    protected void draw(DrawContext dc)
-    {
+    protected void draw(DrawContext dc) {
         // Capture the capabilities actually in use.
-        if (this.capabilities == null)
-        {
+        if (this.capabilities == null) {
             this.capabilities = dc.getGLContext().getGLDrawable().getChosenGLCapabilities();
             this.hardwareStereo = this.capabilities.getStereo();
             this.inStereo = this.isHardwareStereo() ? true : this.isInStereo();
         }
 
         // If stereo isn't to be applied, just draw and return.
-        if (!isInStereo())
-        {
+        if (!isInStereo()) {
             super.draw(dc);
             return;
         }
@@ -146,7 +136,7 @@ public class StereoOptionSceneController extends BasicSceneController implements
         // work correctly (temporary hack)
         View dcView = dc.getView();
         Boolean pitchInRange = (dcView.getPitch().compareTo(Angle.fromDegrees(50)) > 0
-            && dcView.getPitch().compareTo(Angle.POS90) < 0);
+                && dcView.getPitch().compareTo(Angle.POS90) < 0);
 
         if (AVKey.STEREO_MODE_DEVICE.equals(this.stereoMode) && this.isHardwareStereo() && pitchInRange)
             this.doDrawToStereoDevice(dc);
@@ -162,10 +152,10 @@ public class StereoOptionSceneController extends BasicSceneController implements
      * Note that this method draws the image twice, once to each of the left and right eye buffers, even when stereo is
      * not in effect. This is to prevent the stereo device from drawing blurred scenes.
      *
-     * @param dc the current draw context.
+     * @param dc
+     *            the current draw context.
      */
-    protected void doDrawStereoNone(DrawContext dc)
-    {
+    protected void doDrawStereoNone(DrawContext dc) {
         // If running on a stereo device but want to draw a normal image, both buffers must be filled or the
         // display will be blurry.
 
@@ -183,22 +173,19 @@ public class StereoOptionSceneController extends BasicSceneController implements
     /**
      * Implement stereo using the red-blue anaglyph technique.
      *
-     * @param dc the current draw context.
+     * @param dc
+     *            the current draw context.
      */
-    protected void doDrawStereoRedBlue(DrawContext dc)
-    {
+    protected void doDrawStereoRedBlue(DrawContext dc) {
         GL2 gl = dc.getGL().getGL2(); // GL initialization checks for GL2 compatibility.
         View dcView = dc.getView();
 
         // Draw the left eye
-        if (this.isSwapEyes())
-        {
+        if (this.isSwapEyes()) {
             if (this.isHardwareStereo())
                 gl.glDrawBuffer(GL2.GL_BACK_RIGHT);
             gl.glColorMask(false, true, true, true); // right eye in green/blue
-        }
-        else
-        {
+        } else {
             if (this.isHardwareStereo())
                 gl.glDrawBuffer(GL2.GL_BACK_LEFT);
             gl.glColorMask(true, false, false, true); // left eye in red only
@@ -215,28 +202,22 @@ public class StereoOptionSceneController extends BasicSceneController implements
         dcView.apply(dc);
 
         // Draw the right eye frame green and blue only
-        try
-        {
+        try {
             gl.glClear(GL.GL_DEPTH_BUFFER_BIT);
-            if (this.isSwapEyes())
-            {
+            if (this.isSwapEyes()) {
                 if (this.isHardwareStereo())
                     gl.glDrawBuffer(GL2.GL_BACK_RIGHT);
                 gl.glColorMask(true, false, false, true); // right eye in red only
-            }
-            else
-            {
+            } else {
                 if (this.isHardwareStereo())
                     gl.glDrawBuffer(GL2.GL_BACK_LEFT);
-                gl.glColorMask(false, true, true, true);  // right eye in green/blue
+                gl.glColorMask(false, true, true, true); // right eye in green/blue
             }
 
             if (this.isHardwareStereo())
                 gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
             super.draw(dc);
-        }
-        finally
-        {
+        } finally {
             // Restore the original view heading
             dcView.setHeading(viewHeading);
             dcView.apply(dc);
@@ -248,10 +229,10 @@ public class StereoOptionSceneController extends BasicSceneController implements
      * Implement stereo using the stereo-enabled graphics device. The mode has an effect only if the display device
      * implements stereo.
      *
-     * @param dc the current draw context.
+     * @param dc
+     *            the current draw context.
      */
-    protected void doDrawToStereoDevice(DrawContext dc)
-    {
+    protected void doDrawToStereoDevice(DrawContext dc) {
         GL2 gl = dc.getGL().getGL2(); // GL initialization checks for GL2 compatibility.
         View dcView = dc.getView();
 
@@ -270,8 +251,7 @@ public class StereoOptionSceneController extends BasicSceneController implements
         dcView.apply(dc);
 
         // Draw the right eye
-        try
-        {
+        try {
             if (this.isSwapEyes())
                 gl.glDrawBuffer(GL2.GL_BACK_LEFT);
             else
@@ -279,9 +259,7 @@ public class StereoOptionSceneController extends BasicSceneController implements
 
             gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
             super.draw(dc);
-        }
-        finally
-        {
+        } finally {
             // Restore the original view heading
             dcView.setHeading(viewHeading);
             dcView.apply(dc);

@@ -5,12 +5,20 @@
  */
 package gov.nasa.worldwindx.applications.sar.render;
 
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.Logging;
+import java.awt.Color;
+import java.awt.Point;
+import java.awt.Rectangle;
 
-import javax.media.opengl.*;
-import java.awt.*;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.geom.Line;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.OrderedRenderable;
+import gov.nasa.worldwind.render.Renderable;
+import gov.nasa.worldwind.util.Logging;
 
 /**
  * Display an horizontal line across the viewport when a plane at a given elevation cuts through the view near plane.

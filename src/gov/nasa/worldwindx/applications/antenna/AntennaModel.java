@@ -6,21 +6,38 @@
 
 package gov.nasa.worldwindx.applications.antenna;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.util.List;
+
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+
 import com.jogamp.common.nio.Buffers;
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.geom.*;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.Exportable;
+import gov.nasa.worldwind.WorldWind;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Extent;
+import gov.nasa.worldwind.geom.Intersection;
+import gov.nasa.worldwind.geom.Line;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Sphere;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.globes.Globe;
-import gov.nasa.worldwind.render.*;
+import gov.nasa.worldwind.render.AbstractShape;
+import gov.nasa.worldwind.render.BasicWWTexture;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.WWTexture;
 import gov.nasa.worldwind.terrain.Terrain;
 import gov.nasa.worldwind.util.Logging;
-
-import javax.media.opengl.*;
-import javax.xml.stream.*;
-import java.awt.*;
-import java.awt.image.*;
-import java.io.IOException;
-import java.nio.*;
-import java.util.List;
 
 /**
  * Models antenna gain. Gain values are drawn from an {@link Interpolator2D}. The value plotted is determined by the

@@ -5,12 +5,21 @@
  */
 package gov.nasa.worldwind.render;
 
-import gov.nasa.worldwind.util.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Insets;
 
-import javax.media.opengl.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.*;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.OGLTextRenderer;
+import gov.nasa.worldwind.util.OGLUtil;
 
 /**
  * @author dcollins

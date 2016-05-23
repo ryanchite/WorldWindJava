@@ -6,12 +6,20 @@
 
 package gov.nasa.worldwind.geom;
 
-import gov.nasa.worldwind.View;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-import javax.media.opengl.*;
-import java.util.*;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.View;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.Renderable;
+import gov.nasa.worldwind.util.BufferWrapper;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.OGLUtil;
+import gov.nasa.worldwind.util.WWMath;
 
 /**
  * An arbitrarily oriented box, typically used as a oriented bounding volume for a collection of points or shapes. A

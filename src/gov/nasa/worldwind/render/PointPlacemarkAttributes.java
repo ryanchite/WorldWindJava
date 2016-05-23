@@ -6,18 +6,27 @@
 
 package gov.nasa.worldwind.render;
 
-import gov.nasa.worldwind.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.Writer;
+import java.util.UUID;
+
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+
+import com.jogamp.opengl.GL;
+
+import gov.nasa.worldwind.Configuration;
+import gov.nasa.worldwind.Exportable;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.ogc.kml.KMLConstants;
 import gov.nasa.worldwind.ogc.kml.impl.KMLExportUtil;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.GL;
-import javax.xml.stream.*;
-import java.awt.*;
-import java.awt.image.*;
-import java.io.*;
-import java.util.UUID;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.WWUtil;
 
 /** Holds attributes for {@link gov.nasa.worldwind.render.PointPlacemark}s. */
 public class PointPlacemarkAttributes implements Exportable

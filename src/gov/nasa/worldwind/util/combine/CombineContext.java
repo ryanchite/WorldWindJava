@@ -5,14 +5,23 @@
  */
 package gov.nasa.worldwind.util.combine;
 
-import gov.nasa.worldwind.Disposable;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.globes.Globe;
-import gov.nasa.worldwind.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.glu.*;
-import java.util.*;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.glu.GLUtessellator;
+import com.jogamp.opengl.glu.GLUtessellatorCallback;
+import com.jogamp.opengl.glu.GLUtessellatorCallbackAdapter;
+
+import gov.nasa.worldwind.Disposable;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.globes.Globe;
+import gov.nasa.worldwind.util.ContourList;
+import gov.nasa.worldwind.util.GLUTessellatorSupport;
+import gov.nasa.worldwind.util.Logging;
 
 /**
  * CombineContext provides a suitcase of state used by Combinable shapes to generate a complex set of contours by

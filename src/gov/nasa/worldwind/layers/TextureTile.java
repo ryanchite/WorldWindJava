@@ -5,18 +5,34 @@
  */
 package gov.nasa.worldwind.layers;
 
-import com.jogamp.opengl.util.texture.*;
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.avlist.AVKey;
-import gov.nasa.worldwind.cache.*;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.globes.Globe;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.util.texture.Texture;
+import com.jogamp.opengl.util.texture.TextureData;
+import com.jogamp.opengl.util.texture.TextureIO;
+
+import gov.nasa.worldwind.Configuration;
+import gov.nasa.worldwind.WorldWind;
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.cache.BasicMemoryCache;
+import gov.nasa.worldwind.cache.GpuResourceCache;
+import gov.nasa.worldwind.cache.MemoryCache;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Extent;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.globes.Globe;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.SurfaceTile;
+import gov.nasa.worldwind.util.Level;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.Tile;
+import gov.nasa.worldwind.util.TileKey;
 
 /**
  * This class manages the conversion and timing of image data to a JOGL Texture, and provides an interface for binding

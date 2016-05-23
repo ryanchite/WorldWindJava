@@ -6,16 +6,25 @@
 
 package gov.nasa.worldwind.render;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.util.Arrays;
+
+import com.jogamp.opengl.GL2;
+
 import gov.nasa.worldwind.Movable;
 import gov.nasa.worldwind.avlist.AVKey;
-import gov.nasa.worldwind.geom.*;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.globes.Globe;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.GL2;
-import java.awt.*;
-import java.awt.geom.*;
-import java.util.Arrays;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLStackHandler;
+import gov.nasa.worldwind.util.OGLTextRenderer;
+import gov.nasa.worldwind.util.SurfaceTileDrawContext;
 
 /**
  * Renders a string of text on the surface of the globe. The text will appear draped over terrain. Surface text is drawn

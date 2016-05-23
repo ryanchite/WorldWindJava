@@ -6,13 +6,14 @@
 
 package gov.nasa.worldwind.render;
 
+import java.awt.Point;
+import java.nio.DoubleBuffer;
+
 import com.jogamp.common.nio.Buffers;
+import com.jogamp.opengl.GL2;
+
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.util.Logging;
-
-import javax.media.opengl.*;
-import java.awt.*;
-import java.nio.DoubleBuffer;
 
 /**
  * Static class for drawing 2D frames. <p> All shapes are drawn inside a bounding rectangle whose lower left corner is

@@ -6,16 +6,29 @@
 
 package gov.nasa.worldwind.render.airspaces;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.cache.Cacheable;
-import gov.nasa.worldwind.geom.*;
+import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.Box;
+import gov.nasa.worldwind.geom.Extent;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.globes.Globe;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
-import java.util.*;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.SurfacePolyline;
+import gov.nasa.worldwind.render.SurfaceShape;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.RestorableSupport;
 
 /**
  * A curtain is a series of adjacent rectangular planes. The upper edges of the planes are the connecting line segments

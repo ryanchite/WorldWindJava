@@ -5,16 +5,25 @@
  */
 package gov.nasa.worldwind.view;
 
+import java.awt.Point;
+
+import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.glu.gl2.GLUgl2;
+
 import gov.nasa.worldwind.View;
-import gov.nasa.worldwind.animation.*;
-import gov.nasa.worldwind.geom.*;
+import gov.nasa.worldwind.animation.AngleAnimator;
+import gov.nasa.worldwind.animation.AnimationSupport;
+import gov.nasa.worldwind.animation.CompoundAnimator;
+import gov.nasa.worldwind.animation.PositionAnimator;
+import gov.nasa.worldwind.animation.ScheduledInterpolator;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Line;
+import gov.nasa.worldwind.geom.Matrix;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
 import gov.nasa.worldwind.globes.Globe;
 import gov.nasa.worldwind.render.DrawContext;
 import gov.nasa.worldwind.util.Logging;
-
-import javax.media.opengl.glu.GLU;
-import javax.media.opengl.glu.gl2.GLUgl2;
-import java.awt.*;
 
 /**
  * @author jym

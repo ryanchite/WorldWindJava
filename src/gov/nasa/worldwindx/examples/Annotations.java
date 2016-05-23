@@ -5,25 +5,65 @@
  */
 package gov.nasa.worldwindx.examples;
 
-import gov.nasa.worldwind.*;
-import gov.nasa.worldwind.avlist.AVKey;
-import gov.nasa.worldwind.event.*;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.layers.*;
-import gov.nasa.worldwind.pick.*;
-import gov.nasa.worldwind.render.*;
-import gov.nasa.worldwind.util.*;
-import gov.nasa.worldwindx.examples.util.PowerOfTwoPaddedImage;
-
-import javax.media.opengl.*;
-import javax.swing.*;
-import javax.swing.Box;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.net.URL;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JColorChooser;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.JSpinner;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.View;
+import gov.nasa.worldwind.WorldWindow;
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.event.SelectEvent;
+import gov.nasa.worldwind.event.SelectListener;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.layers.AnnotationLayer;
+import gov.nasa.worldwind.layers.RenderableLayer;
+import gov.nasa.worldwind.pick.PickedObject;
+import gov.nasa.worldwind.pick.PickedObjectList;
+import gov.nasa.worldwind.render.Annotation;
+import gov.nasa.worldwind.render.AnnotationAttributes;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwind.render.FrameFactory;
+import gov.nasa.worldwind.render.GlobeAnnotation;
+import gov.nasa.worldwind.render.PatternFactory;
+import gov.nasa.worldwind.render.ScreenAnnotation;
+import gov.nasa.worldwind.render.ScreenRelativeAnnotation;
+import gov.nasa.worldwind.render.TextRenderer;
+import gov.nasa.worldwind.util.BasicDragger;
+import gov.nasa.worldwind.util.BrowserOpener;
+import gov.nasa.worldwindx.examples.util.PowerOfTwoPaddedImage;
 
 /**
  * Illustrates how to use a World Wind <code>{@link Annotation}</code> to display on-screen information to the user in

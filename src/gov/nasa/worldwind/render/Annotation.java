@@ -5,12 +5,14 @@
  */
 package gov.nasa.worldwind.render;
 
-import gov.nasa.worldwind.*;
+import com.jogamp.opengl.GL;
+
+import gov.nasa.worldwind.Disposable;
+import gov.nasa.worldwind.Restorable;
+import gov.nasa.worldwind.WorldWindow;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.geom.Position;
-import gov.nasa.worldwind.pick.*;
-
-import javax.media.opengl.GL;
+import gov.nasa.worldwind.pick.PickSupport;
 
 /**
  * Represent a text label and its rendering attributes.

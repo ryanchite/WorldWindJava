@@ -5,16 +5,22 @@
  */
 package gov.nasa.worldwind.render;
 
-import com.jogamp.common.nio.Buffers;
-import com.jogamp.opengl.util.texture.*;
-import gov.nasa.worldwind.Disposable;
-import gov.nasa.worldwind.terrain.SectorGeometry;
-import gov.nasa.worldwind.util.*;
-
-import javax.media.opengl.*;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.logging.Level;
+
+import com.jogamp.common.nio.Buffers;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.GLContext;
+import com.jogamp.opengl.util.texture.Texture;
+import com.jogamp.opengl.util.texture.TextureData;
+import com.jogamp.opengl.util.texture.TextureIO;
+
+import gov.nasa.worldwind.Disposable;
+import gov.nasa.worldwind.terrain.SectorGeometry;
+import gov.nasa.worldwind.util.Logging;
+import gov.nasa.worldwind.util.OGLUtil;
 
 /**
  * @author tag

@@ -5,14 +5,19 @@
  */
 package gov.nasa.worldwind.render;
 
-import com.jogamp.common.nio.Buffers;
-import gov.nasa.worldwind.Movable;
-import gov.nasa.worldwind.geom.*;
-import gov.nasa.worldwind.util.Logging;
-
-import javax.media.opengl.*;
-import java.awt.*;
+import java.awt.Color;
 import java.nio.DoubleBuffer;
+
+import com.jogamp.common.nio.Buffers;
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+
+import gov.nasa.worldwind.Movable;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Vec4;
+import gov.nasa.worldwind.util.Logging;
 
 /**
  * @author tag
